@@ -51,41 +51,42 @@ function ask(question){
 
     return new Promise(resolve=>{
 
-        const wrapper = document.createElement("div");
+        typeLine(question);
 
-        wrapper.className = "inputRow";
+        const line = document.createElement("p");
 
-        const prompt = document.createElement("span");
+        const cursor = document.createElement("span");
+        cursor.textContent = "> ";
 
-        prompt.textContent = ">";
+        const input = document.createElement("span");
 
-        const input = document.createElement("input");
-
-        input.type = "text";
-        input.className = "terminalInput";
-        input.autocomplete = "off";
+        input.contentEditable = true;
+        input.className = "terminalTyping";
         input.spellcheck = false;
 
-        wrapper.appendChild(prompt);
-        wrapper.appendChild(input);
+        line.appendChild(cursor);
+        line.appendChild(input);
 
-        screen.appendChild(document.createElement("br"));
-        screen.appendChild(document.createTextNode(question));
-        screen.appendChild(wrapper);
+        screen.appendChild(line);
 
         input.focus();
 
+
         input.addEventListener("keydown",(e)=>{
 
-            if(e.key==="Enter"){
+            if(e.key === "Enter"){
 
-                const value = input.value.trim();
+                e.preventDefault();
 
-                if(value==="") return;
+                const answer = input.textContent.trim();
 
-                wrapper.innerHTML = "> " + value;
+                if(answer==="") return;
 
-                resolve(value);
+
+                input.contentEditable = false;
+
+
+                resolve(answer);
 
             }
 

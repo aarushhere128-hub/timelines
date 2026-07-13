@@ -2,107 +2,21 @@
 // TIMELINES: THE ARCHIVE
 // app.js
 // ======================================
-
+import { typeLine, ask, clearTerminal } from "./terminal.js";
 const screen = document.querySelector(".screen");
 
 let player = {};
 
 
-// -----------------------------
-// Typewriter Effect
-// -----------------------------
-function typeLine(text, speed = 30) {
-
-    return new Promise(resolve => {
-
-        const p = document.createElement("p");
-
-        p.textContent = "";
-
-        screen.appendChild(p);
-
-        let i = 0;
-
-        const interval = setInterval(() => {
-
-            p.textContent += text.charAt(i);
-
-            i++;
-
-            if(i >= text.length){
-
-                clearInterval(interval);
-
-                resolve();
-
-            }
-
-        }, speed);
-
-    });
-
-}
-
-
-// -----------------------------
-// Terminal Input
-// -----------------------------
-function ask(question){
-
-    return new Promise(resolve=>{
-
-        typeLine(question);
-
-        const line = document.createElement("p");
-
-        const cursor = document.createElement("span");
-        cursor.textContent = "> ";
-
-        const input = document.createElement("span");
-
-        input.contentEditable = true;
-        input.className = "terminalTyping";
-        input.spellcheck = false;
-
-        line.appendChild(cursor);
-        line.appendChild(input);
-
-        screen.appendChild(line);
-
-        input.focus();
-
-
-        input.addEventListener("keydown",(e)=>{
-
-            if(e.key === "Enter"){
-
-                e.preventDefault();
-
-                const answer = input.textContent.trim();
-
-                if(answer==="") return;
-
-
-                input.contentEditable = false;
-
-
-                resolve(answer);
-
-            }
-
-        });
-
-    });
-
-}
 
 
 // -----------------------------
 // Registration Flow
 // -----------------------------
 async function startRegistration(){
+    clearTerminal();
 
-    screen.innerHTML = "";
+
 
     await typeLine("> Connecting to The Archive...");
     await typeLine("");
@@ -150,8 +64,9 @@ async function startRegistration(){
 // Start Screen
 // -----------------------------
 function showIntro(){
+    clearTerminal();
 
-    screen.innerHTML = "";
+    
 
     const title = document.createElement("h2");
     title.textContent = "THE ARCHIVE";
@@ -173,8 +88,9 @@ function showIntro(){
     accept.addEventListener("click",startRegistration);
 
     decline.addEventListener("click",async()=>{
+        clearTerminal();
 
-        screen.innerHTML="";
+        
 
         await typeLine("Request acknowledged.");
         await typeLine("");

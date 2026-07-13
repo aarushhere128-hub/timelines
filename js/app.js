@@ -58,9 +58,12 @@ function typeLine(text, speed = 30) {
 
 
 // ACCEPT BUTTON
+// ACCEPT BUTTON
 acceptBtn.addEventListener("click", async () => {
 
     screen.innerHTML = "";
+
+    const assetID = generateAssetID();
 
     await typeLine("> Connecting to The Archive...");
     await typeLine("> Identity Verification Complete.");
@@ -71,11 +74,23 @@ acceptBtn.addEventListener("click", async () => {
     await typeLine("Initializing ARGUS...");
     await typeLine("Loading...");
     await typeLine("");
-    await typeLine("Press ENTER to continue.");
+
+    // Continue Button
+    const continueBtn = document.createElement("button");
+    continueBtn.textContent = "CONTINUE";
+    continueBtn.id = "continueBtn";
+
+    screen.appendChild(continueBtn);
+
+    continueBtn.addEventListener("click", () => {
+        // Later we'll go to registration/game
+        alert("Next sequence coming soon...");
+    });
 
 });
 
 
+// DECLINE BUTTON
 // DECLINE BUTTON
 declineBtn.addEventListener("click", async () => {
 
@@ -89,5 +104,44 @@ declineBtn.addEventListener("click", async () => {
     await typeLine("Request denied.");
     await typeLine("");
     await typeLine("The Archive does not accept refusals.");
+    await typeLine("");
+    await typeLine("Would you like to join The Archive?");
+    await typeLine("");
+
+    // Create only the ACCEPT button
+    const acceptAgain = document.createElement("button");
+    acceptAgain.textContent = "ACCEPT";
+    acceptAgain.id = "acceptBtn";
+
+    screen.appendChild(acceptAgain);
+
+    // Reuse the original ACCEPT logic
+    acceptAgain.addEventListener("click", async () => {
+
+        screen.innerHTML = "";
+
+        const assetID = generateAssetID();
+
+        await typeLine("> Connecting to The Archive...");
+        await typeLine("> Identity Verification Complete.");
+        await typeLine("");
+        await typeLine("Generating Asset Designation...");
+        await typeLine(assetID);
+        await typeLine("");
+        await typeLine("Initializing ARGUS...");
+        await typeLine("Loading...");
+        await typeLine("");
+
+        const continueBtn = document.createElement("button");
+        continueBtn.textContent = "CONTINUE";
+        continueBtn.id = "continueBtn";
+
+        screen.appendChild(continueBtn);
+
+        continueBtn.addEventListener("click", () => {
+            alert("Next sequence coming soon...");
+        });
+
+    });
 
 });

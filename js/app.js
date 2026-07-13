@@ -68,8 +68,7 @@ function showIntro(){
 
     
 
-    const title = document.createElement("h2");
-    title.textContent = "THE ARCHIVE";
+    ;
 
     const question = document.createElement("p");
     question.textContent = "Would you like to join The Archive?";
@@ -80,7 +79,7 @@ function showIntro(){
     const decline = document.createElement("button");
     decline.textContent = "DECLINE";
 
-    screen.appendChild(title);
+    
     screen.appendChild(question);
     screen.appendChild(accept);
     screen.appendChild(decline);

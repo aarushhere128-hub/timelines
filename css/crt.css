@@ -1,0 +1,109 @@
+/* ==========================================
+   CRT EFFECTS
+========================================== */
+
+/* Slight flicker */
+
+body{
+    animation:flicker 0.15s infinite;
+}
+
+@keyframes flicker{
+
+    0%{opacity:0.98;}
+    5%{opacity:0.96;}
+    10%{opacity:0.99;}
+    15%{opacity:0.97;}
+    20%{opacity:1;}
+    100%{opacity:0.98;}
+
+}
+
+
+/* Scanlines */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 1px,
+        transparent 2px,
+        transparent 4px
+    );
+
+    z-index:999;
+}
+
+
+/* Green glow */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+    radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        rgba(0,255,140,0.05) 70%,
+        rgba(0,0,0,0.45) 100%
+    );
+
+    z-index:998;
+
+}
+
+
+/* Text glow */
+
+.terminal{
+
+    text-shadow:
+        0 0 4px #00ff99,
+        0 0 10px rgba(0,255,153,.6);
+
+}
+
+
+/* Small screen distortion */
+
+.terminal{
+
+    animation:screenMove 7s ease-in-out infinite;
+}
+
+@keyframes screenMove{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(0.5px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}

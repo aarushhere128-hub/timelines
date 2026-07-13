@@ -1,0 +1,151 @@
+/* ==========================================
+   TIMELINES: THE ARCHIVE
+   style.css
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:#00ff99;
+    font-family:'VT323', monospace;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:100vw;
+    height:100vh;
+
+    overflow:hidden;
+}
+
+/* ==========================
+   TERMINAL
+========================== */
+
+.terminal{
+
+    width:min(900px,90vw);
+    height:min(650px,90vh);
+
+    border:2px solid #00ff99;
+
+    background:#020202;
+
+    padding:35px;
+
+    box-shadow:
+        0 0 10px #00ff99,
+        0 0 20px #00ff99,
+        inset 0 0 25px rgba(0,255,153,.15);
+
+    overflow-y:auto;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    font-size:3rem;
+    letter-spacing:4px;
+    text-shadow:0 0 12px #00ff99;
+}
+
+.header p{
+    font-size:1.4rem;
+    opacity:.8;
+}
+
+/* ==========================
+   SCREEN
+========================== */
+
+.screen{
+    font-size:1.6rem;
+    line-height:1.8;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.buttons{
+    margin-top:25px;
+
+    display:flex;
+    gap:20px;
+}
+
+button{
+
+    font-family:'VT323', monospace;
+
+    font-size:1.5rem;
+
+    background:transparent;
+
+    color:#00ff99;
+
+    border:2px solid #00ff99;
+
+    padding:10px 22px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+
+    background:#00ff99;
+
+    color:black;
+
+    box-shadow:0 0 18px #00ff99;
+}
+
+/* ==========================
+   CURSOR
+========================== */
+
+.cursor{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:0;
+    }
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00ff99;
+}

@@ -149,3 +149,36 @@ button:hover{
 ::-webkit-scrollbar-thumb{
     background:#00ff99;
 }
+#terminalOutput{
+    white-space: pre-wrap;
+    line-height:1.8;
+}
+
+#inputContainer{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+#terminalInput{
+
+    flex:1;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:#00ff88;
+
+    font-family:inherit;
+
+    font-size:1rem;
+
+}
+
+.hidden{
+    display:none !important;
+}

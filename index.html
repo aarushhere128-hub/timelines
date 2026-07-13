@@ -20,23 +20,20 @@
 
     <div class="screen">
 
-        <p>> Initializing Terminal...</p>
-        <p>> Connection Established.</p>
-        <br>
+    <div id="terminalOutput"></div>
 
-        <p>You have been identified as a suitable candidate.</p>
-        <br>
+    <div id="inputContainer" class="hidden">
 
-        <p>Would you like to join The Archive?</p>
+        <span>&gt;</span>
 
-        <div class="buttons">
-            <button id="acceptBtn">ACCEPT</button>
-            <button id="declineBtn">DECLINE</button>
-        </div>
+        <input
+            type="text"
+            id="terminalInput"
+            autocomplete="off"
+            spellcheck="false"
+        >
 
-        <br>
-
-        <p class="cursor">█</p>
+    </div>
 
     </div>
 

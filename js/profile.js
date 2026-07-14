@@ -41,8 +41,11 @@ export async function createAssetProfile(user, assetID) {
         rank: "Candidate",
 
         argusName: "ARGUS",
+        argusStage: 0,
 
-        argusConversation: [],
+argusCompleted: false,
+
+      
 
         timelinesCompleted: 0,
 

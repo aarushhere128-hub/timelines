@@ -177,13 +177,14 @@ choices.innerHTML = "";
 // --------------------------------------
 
 function keepArgus(assetData){
-    document.getElementById("keepArgus").disabled = true;
-document.getElementById("renameArgus").disabled = true;
 
-    console.log("KEEP ARGUS");
     document
-.getElementById("keepArgus")
-.classList.add("selected");
+    .querySelectorAll(".argusOption")
+    .forEach(button=>button.disabled=true);
+
+    document
+    .getElementById("keepArgus")
+    .classList.add("selected");
 
 }
 
@@ -193,12 +194,13 @@ document.getElementById("renameArgus").disabled = true;
 // --------------------------------------
 
 function renameArgus(assetData){
-    document.getElementById("keepArgus").disabled = true;
-document.getElementById("renameArgus").disabled = true;
 
-    console.log("RENAME ARGUS");
     document
-.getElementById("renameArgus")
-.classList.add("selected");
+    .querySelectorAll(".argusOption")
+    .forEach(button=>button.disabled=true);
+
+    document
+    .getElementById("renameArgus")
+    .classList.add("selected");
 
 }

@@ -29,7 +29,21 @@ body{
 /* ==========================
    TERMINAL
 ========================== */
+.hidden {
 
+    display:none;
+
+}
+
+
+#consoleMenu {
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:15px;
+
+}
 .terminal{
 
     width:min(900px,90vw);

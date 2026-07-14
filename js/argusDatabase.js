@@ -8,66 +8,68 @@ import { db } from "./firebase.js";
 import {
     doc,
     getDoc,
-    updateDoc,
-    arrayUnion
-} from 
+    updateDoc
+} from
 "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
-
 // --------------------------------------
-// Save ARGUS Message
+// Load ARGUS Stage
 // --------------------------------------
 
-export async function saveArgusLine(uid, text){
-
+export async function loadArgusStage(uid){
 
     const assetRef =
-    doc(db, "assets", uid);
+        doc(db, "assets", uid);
 
+    const snapshot =
+        await getDoc(assetRef);
 
-    await updateDoc(assetRef, {
+    if(!snapshot.exists()){
 
-        argusConversation:
-        arrayUnion(text)
+        return 0;
 
-    });
+    }
 
+    const data =
+        snapshot.data();
+
+    return data.argusStage || 0;
 
 }
 
 
-
 // --------------------------------------
-// Load ARGUS History
+// Save ARGUS Stage
 // --------------------------------------
 
-export async function loadArgusConversation(uid){
-
+export async function saveArgusStage(uid, stage){
 
     const assetRef =
-    doc(db, "assets", uid);
+        doc(db, "assets", uid);
+
+    await updateDoc(assetRef,{
+
+        argusStage: stage
+
+    });
+
+}
 
 
-    const snapshot =
-    await getDoc(assetRef);
+// --------------------------------------
+// Mark Orientation Complete
+// --------------------------------------
 
+export async function completeOrientation(uid){
 
+    const assetRef =
+        doc(db,"assets",uid);
 
-    if(!snapshot.exists()){
+    await updateDoc(assetRef,{
 
-        return [];
+        argusCompleted: true
 
-    }
-
-
-
-    const data =
-    snapshot.data();
-
-
-
-    return data.argusConversation || [];
-
+    });
 
 }

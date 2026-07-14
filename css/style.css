@@ -45,23 +45,24 @@
 
 }
 
+
 #argusChoices button{
 
     all:unset;
 
     display:block;
 
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:4px 12px;
+
     cursor:pointer;
 
     color:#d7d7d7;
 
     font-family:inherit;
-
-    font-size:1rem;
-
-    padding:2px 0;
-
-    transition:color .15s;
 
 }
 
@@ -71,14 +72,12 @@
 
 }
 
-#argusChoices button:hover{
-
-    color:#00ff66;
-
-}
+#argusChoices button:hover,
 #argusChoices button.selected{
 
-    color:#00ff66;
+    background:#00ff66;
+
+    color:#000;
 
 }
 #consoleScreen {

@@ -84,15 +84,33 @@ onAuthStateChanged(auth, async (user) => {
 
     const assetRef = doc(db, "assets", user.uid);
 
-    const assetSnap = await getDoc(assetRef);
+const assetSnap = await getDoc(assetRef);
 
-    if (!assetSnap.exists()) {
 
-        window.location.href = "asset-create.html";
+// DEBUG
 
-        return;
+console.log("USER UID:", user.uid);
 
-    }
+console.log(
+    "PROFILE EXISTS:",
+    assetSnap.exists()
+);
+
+console.log(
+    "PROFILE DATA:",
+    assetSnap.data()
+);
+
+
+// Continue
+
+if (!assetSnap.exists()) {
+
+    window.location.href = "asset-create.html";
+
+    return;
+
+}
 
     // Load deployment
 

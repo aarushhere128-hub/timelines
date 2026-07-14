@@ -138,48 +138,38 @@ choices.innerHTML = "";
 }
   function showRenameChoices(assetData){
 
-    const choices =
-    document.getElementById("argusChoices");
+    const dialogue =
+    document.getElementById("argusDialogue");
 
-    choices.classList.remove("hidden");
+    dialogue.insertAdjacentHTML(
 
-    choices.innerHTML = `
+        "beforeend",
 
-        <button id="keepArgus">
+        `
 
-            KEEP ARGUS
+        <button class="argusOption" id="keepArgus">
 
-        </button>
-
-        <button id="renameArgus">
-
-            RENAME
+            > KEEP ARGUS
 
         </button>
 
-    `;
+        <button class="argusOption" id="renameArgus">
 
+            > RENAME
+
+        </button>
+
+        `
+
+    );
 
     document
-
     .getElementById("keepArgus")
-
-    .onclick = ()=>{
-
-        keepArgus(assetData);
-
-    };
-
+    .onclick = ()=>keepArgus(assetData);
 
     document
-
     .getElementById("renameArgus")
-
-    .onclick = ()=>{
-
-        renameArgus(assetData);
-
-    };
+    .onclick = ()=>renameArgus(assetData);
 
 }
 // --------------------------------------

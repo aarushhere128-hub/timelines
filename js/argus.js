@@ -3,10 +3,10 @@
 // argus.js
 // ======================================
 
-
 import {
     typeLine,
-    clearTerminal
+    clearTerminal,
+    setTerminalScreen
 } from "./terminal.js";
 
 
@@ -14,15 +14,19 @@ import {
 // ARGUS Orientation
 // --------------------------------------
 
-export async function startArgusOrientation(assetData) {
+export async function startArgusOrientation(assetData){
+
+    const argusDialogue =
+    document.getElementById("argusDialogue");
 
 
+    setTerminalScreen(argusDialogue);
 
+    clearTerminal();
 
-
-    // INTRO
 
     await typeLine("> ARGUS ONLINE.");
+
     await typeLine("");
 
     await typeLine(

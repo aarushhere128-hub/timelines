@@ -33,6 +33,23 @@
     }
 
 }
+#argusChoices{
+
+    margin-top:30px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+#argusChoices button{
+
+    width:220px;
+
+}
 #consoleScreen {
 
     position: fixed;

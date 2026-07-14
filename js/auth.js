@@ -11,21 +11,19 @@ import {
     updateProfile
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-export async function registerAsset(displayName, email, password){
+export async function registerAsset(displayName, email, password) {
 
-    const userCredential =
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+    );
 
-    await updateProfile(userCredential.user,{
+    await updateProfile(userCredential.user, {
         displayName
     });
 
     await sendEmailVerification(userCredential.user);
 
     return userCredential.user;
-
 }

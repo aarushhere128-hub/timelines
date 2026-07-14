@@ -7,6 +7,7 @@ import { auth } from "./firebase.js";
 
 import {
     createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
     sendEmailVerification,
     updateProfile
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
@@ -26,4 +27,15 @@ export async function registerAsset(displayName, email, password) {
     await sendEmailVerification(userCredential.user);
 
     return userCredential.user;
+}
+export async function loginAsset(email, password) {
+
+    const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+    );
+
+    return userCredential.user;
+
 }

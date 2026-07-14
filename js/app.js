@@ -63,15 +63,21 @@ async function startRegistration(){
 // -----------------------------
 // Start Screen
 // -----------------------------
-function showIntro(){
+async function showIntro() {
+
     clearTerminal();
 
-    
-
-    ;
-
-    const question = document.createElement("p");
-    question.textContent = "Would you like to join The Archive?";
+    await typeLine("Booting Archive Terminal...");
+    await typeLine("");
+    await typeLine("Connecting to Archive Network...");
+    await typeLine("");
+    await typeLine("Authentication Service Online.");
+    await typeLine("");
+    await typeLine("ARGUS unavailable.");
+    await typeLine("Manual recruitment mode enabled.");
+    await typeLine("");
+    await typeLine("Would you like to join The Archive?");
+    await typeLine("");
 
     const accept = document.createElement("button");
     accept.textContent = "ACCEPT";
@@ -79,17 +85,13 @@ function showIntro(){
     const decline = document.createElement("button");
     decline.textContent = "DECLINE";
 
-    
-    screen.appendChild(question);
     screen.appendChild(accept);
     screen.appendChild(decline);
 
-    accept.addEventListener("click",startRegistration);
+    accept.addEventListener("click", startRegistration);
 
-    decline.addEventListener("click",async()=>{
+    decline.addEventListener("click", async () => {
         clearTerminal();
-
-        
 
         await typeLine("Request acknowledged.");
         await typeLine("");
@@ -100,16 +102,13 @@ function showIntro(){
         await typeLine("The Archive does not accept refusals.");
         await typeLine("");
 
-        const acceptAgain=document.createElement("button");
-
-        acceptAgain.textContent="ACCEPT";
+        const acceptAgain = document.createElement("button");
+        acceptAgain.textContent = "ACCEPT";
 
         screen.appendChild(acceptAgain);
 
-        acceptAgain.addEventListener("click",startRegistration);
-
+        acceptAgain.addEventListener("click", startRegistration);
     });
-
 }
 
 

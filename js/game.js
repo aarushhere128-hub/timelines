@@ -15,7 +15,8 @@ import {
     doc,
     getDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
+let currentDeployment;
+let assetData;
 
 // --------------------------------------
 // Temporary Deployment
@@ -99,14 +100,14 @@ if (!assetSnap.exists()) {
     return;
 
 }
-const assetData = assetSnap.data();
+assetData = assetSnap.data();
 document
 .getElementById("argusButtonName")
 .textContent = assetData.argusName;
     // Load deployment
 
 
-  const deployment = getNextDeployment();
+  const currentDeployment = getNextDeployment();
 
 if (!deployment) {
 
@@ -116,7 +117,7 @@ if (!deployment) {
 
 }
 
-loadDeployment(deployment);
+loadDeployment(currentDeployment);
 
 
 });
@@ -132,8 +133,8 @@ document
 
     // Timeline page later
 
-   window.location.href =
-"timeline.html?id=" + deployment.id;
+  window.location.href =
+"timeline.html?id=" + currentDeployment.id;
 
 });
 
@@ -142,23 +143,80 @@ document
 // Asset Console
 // --------------------------------------
 
+// --------------------------------------
+// Asset Console
+// --------------------------------------
+
 const consoleButton =
-document.getElementById("assetConsole");
+document.getElementById("assetConsoleButton");
 
 
-const consoleMenu =
-document.getElementById("consoleMenu");
+const consoleScreen =
+document.getElementById("consoleScreen");
+
+
+const closeConsole =
+document.getElementById("closeConsole");
 
 
 consoleButton.addEventListener("click", () => {
 
-    consoleMenu.classList.toggle("hidden");
+    consoleScreen.classList.remove("hidden");
 
 });
-document
-.getElementById("argusButton")
-.addEventListener("click", () => {
 
-    console.log("Opening ARGUS");
+
+closeConsole.addEventListener("click", () => {
+
+    consoleScreen.classList.add("hidden");
+
+});
+
+
+// --------------------------------------
+// ARGUS
+// --------------------------------------
+
+const argusButton =
+document.getElementById("argusButton");
+
+
+const argusScreen =
+document.getElementById("argusScreen");
+
+
+const closeArgus =
+document.getElementById("closeArgus");
+
+
+argusButton.addEventListener("click", () => {
+
+    consoleScreen.classList.add("hidden");
+
+    argusScreen.classList.remove("hidden");
+
+
+    document.getElementById("argusDialogue").innerHTML =
+
+    `
+    <p>ARGUS ONLINE.</p>
+
+    <p>
+    Good morning, ${assetData.displayName}.
+    </p>
+
+    <p>
+    How may I assist you?
+    </p>
+    `;
+
+});
+
+
+closeArgus.addEventListener("click", () => {
+
+    argusScreen.classList.add("hidden");
+
+    consoleScreen.classList.remove("hidden");
 
 });

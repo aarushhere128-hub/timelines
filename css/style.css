@@ -46,6 +46,11 @@
 }
 
 
+/* ======================================
+   ARGUS TERMINAL STYLE
+====================================== */
+
+
 #argusScreen {
 
     position: fixed;
@@ -60,18 +65,62 @@
 
     z-index: 2000;
 
+    padding: 40px;
 
     display: flex;
 
     flex-direction: column;
 
-    justify-content: center;
+    justify-content: flex-start;
 
-    align-items: center;
+    align-items: flex-start;
 
-    gap: 20px;
+    text-align: left;
 
-    text-align: center;
+    font-family: "Courier New", monospace;
+
+}
+
+
+/* ARGUS TITLE */
+
+#argusTitle {
+
+    width:100%;
+
+    text-align:left;
+
+    border-bottom:1px solid white;
+
+    padding-bottom:15px;
+
+    margin-bottom:30px;
+
+    letter-spacing:4px;
+
+}
+
+
+/* Dialogue area */
+
+#argusDialogue {
+
+    max-width:800px;
+
+    font-size:18px;
+
+    line-height:2;
+
+}
+
+
+/* Buttons */
+
+#argusScreen button {
+
+    margin-top:40px;
+
+    width:200px;
 
 }
 body{

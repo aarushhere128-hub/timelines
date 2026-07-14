@@ -151,10 +151,16 @@ document
 // Asset Console
 // --------------------------------------
 
-document
-.getElementById("assetConsole")
-.addEventListener("click", () => {
+const consoleButton =
+document.getElementById("assetConsole");
 
-    alert("Asset Console coming soon.");
+
+const consoleMenu =
+document.getElementById("consoleMenu");
+
+
+consoleButton.addEventListener("click", () => {
+
+    consoleMenu.classList.toggle("hidden");
 
 });

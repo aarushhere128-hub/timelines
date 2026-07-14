@@ -3,13 +3,19 @@
 // asset-create.js
 // ======================================
 
-import { auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
+
 import { createAssetProfile } from "./profile.js";
 import { typeLine, clearTerminal } from "./terminal.js";
 
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const screen = document.querySelector(".screen");
 
@@ -153,6 +159,16 @@ onAuthStateChanged(auth, async (user) => {
         return;
 
     }
+    const assetRef = doc(db, "assets", user.uid);
+
+const assetSnap = await getDoc(assetRef);
+
+if (assetSnap.exists()) {
+
+    window.location.href = "game.html";
+    return;
+
+}
 
     clearTerminal();
 

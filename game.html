@@ -55,31 +55,74 @@
 
     </div>
 
-    <div id="assetConsole">
+    <!-- Asset Console Button -->
 
-        🖥 Asset Console
+<button id="assetConsoleButton">
+    🖥 ASSET CONSOLE
+</button>
 
-    </div>
-    <div id="consoleMenu" class="hidden">
+
+<!-- Asset Console Overlay -->
+
+<div id="consoleScreen" class="hidden">
+
+    <h2>ASSET CONSOLE</h2>
+
 
     <button id="profileButton">
         PROFILE
     </button>
+
+
     <button id="argusButton">
-    <span id="argusButtonName">ARGUS</span>
-</button>
+
+        <span id="argusButtonName">
+            ARGUS
+        </span>
+
+    </button>
+
 
     <button id="timelineRecordButton">
         TIMELINE RECORDS
     </button>
 
+
     <button id="settingsButton">
         SETTINGS
     </button>
 
-</div>
+
+    <button id="closeConsole">
+        CLOSE
+    </button>
+
 
 </div>
+
+
+<!-- ARGUS Overlay -->
+
+<div id="argusScreen" class="hidden">
+
+    <h2 id="argusTitle">
+        ARGUS
+    </h2>
+
+
+    <div id="argusDialogue">
+
+    </div>
+
+
+    <button id="closeArgus">
+        CLOSE
+    </button>
+
+
+</div>
+
+
 
 <script type="module" src="js/game.js"></script>
 

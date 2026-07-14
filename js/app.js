@@ -2,6 +2,7 @@
 // TIMELINES: THE ARCHIVE
 // app.js
 // ======================================
+import { registerAsset } from "./auth.js";
 import { typeLine, ask, clearTerminal } from "./terminal.js";
 const screen = document.querySelector(".screen");
 
@@ -51,11 +52,31 @@ async function startRegistration(){
     }
 
     await typeLine("");
-    await typeLine("Creating Archive Record...");
-    await typeLine("");
-    await typeLine("Connecting to Firebase...");
+await typeLine("Creating Archive Record...");
+await typeLine("");
 
-    // Firebase registration goes here next.
+try {
+
+    await registerAsset(
+        player.displayName,
+        player.email,
+        player.password
+    );
+
+    await typeLine("✓ Archive Record Created.");
+    await typeLine("");
+    await typeLine("Verification signal dispatched.");
+    await typeLine("");
+    await typeLine("Please verify your Archive Email.");
+    await typeLine("");
+    await typeLine("Once verified, restart the application to continue.");
+
+} catch (error) {
+
+    await typeLine("Registration Failed.");
+    await typeLine(error.message);
+
+}
 
 }
 

@@ -7,6 +7,7 @@ import {
 
     typeLine,
     printLine,
+    ask,
     clearTerminal,
     setTerminalScreen
 
@@ -171,15 +172,21 @@ export async function startArgusOrientation(assetData){
 // KEEP ARGUS
 // --------------------------------------
 
-function keepArgus(assetData){
+async function keepArgus(assetData){
 
     document
     .querySelectorAll(".argusOption")
-    .forEach(button=>button.disabled=true);
+    .forEach(button => button.remove());
 
-    document
-    .getElementById("keepArgus")
-    .classList.add("selected");
+    await typeLine("");
+
+    await typeLine("> Designation accepted.");
+
+    await typeLine("> I will continue responding as ARGUS.");
+
+    await typeLine("");
+
+    await typeLine("> Orientation complete.");
 
 }
 
@@ -188,14 +195,18 @@ function keepArgus(assetData){
 // RENAME ARGUS
 // --------------------------------------
 
-function renameArgus(assetData){
+async function renameArgus(assetData){
 
     document
     .querySelectorAll(".argusOption")
-    .forEach(button=>button.disabled=true);
+    .forEach(button => button.remove());
 
-    document
-    .getElementById("renameArgus")
-    .classList.add("selected");
+    await typeLine("");
+
+    await typeLine("> Enter new designation.");
+
+    const newName = await ask("");
+
+    console.log(newName);
 
 }

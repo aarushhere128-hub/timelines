@@ -42,6 +42,8 @@ export async function createAssetProfile(user, assetID) {
 
         argusName: "ARGUS",
 
+        argusConversation: [],
+
         timelinesCompleted: 0,
 
         memoryAnchors: [],

@@ -67,12 +67,7 @@ export async function startArgusOrientation(assetData){
     setTerminalScreen(dialogue);
 
     clearTerminal();
-    const choices =
-document.getElementById("argusChoices");
-
-choices.classList.add("hidden");
-
-choices.innerHTML = "";
+   
 
 
     //------------------------------------

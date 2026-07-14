@@ -4,50 +4,33 @@
 // ======================================
 
 import {
+
     typeLine,
+    printLine,
     clearTerminal,
     setTerminalScreen
+
 } from "./terminal.js";
+
 import {
-    saveArgusLine,
-    loadArgusConversation
+
+    loadArgusStage,
+    saveArgusStage
+
 } from "./argusDatabase.js";
+
+import {
+
+    getOrientation
+
+} from "./argusConversation.js";
+
 
 // --------------------------------------
 // ARGUS State
 // --------------------------------------
 
-let argusActive = false;
-let currentUserUID;
-
-// --------------------------------------
-// Safe ARGUS Line
-// --------------------------------------
-async function argusLine(text){
-
-
-    if(!argusActive){
-
-        return false;
-
-    }
-
-
-
-    await typeLine(text);
-
-
-
-    await saveArgusLine(
-        currentUserUID,
-        text
-    );
-
-
-
-    return true;
-
-}
+let argusRunning = false;
 
 
 // --------------------------------------
@@ -56,322 +39,94 @@ async function argusLine(text){
 
 export function stopArgus(){
 
-    argusActive = false;
+    argusRunning = false;
 
 }
 
 
 // --------------------------------------
-// ARGUS Orientation
+// Start ARGUS
 // --------------------------------------
 
 export async function startArgusOrientation(assetData){
 
-    currentUserUID = assetData.uid;
-
-
-    // Prevent duplicate conversations
-
-    if(argusActive){
+    if(argusRunning){
 
         return;
 
     }
 
-
-    argusActive = true;
-
+    argusRunning = true;
 
 
-    const argusDialogue =
-    document.getElementById("argusDialogue");
+    const dialogue =
+
+        document.getElementById("argusDialogue");
 
 
-
-    if(!argusDialogue){
-
-        console.error(
-            "ARGUS dialogue screen not found."
-        );
-
-        return;
-
-    }
-
-
-
-    setTerminalScreen(argusDialogue);
+    setTerminalScreen(dialogue);
 
     clearTerminal();
-    const history =
-await loadArgusConversation(assetData.uid);
 
 
-for(const line of history){
+    //------------------------------------
+    // Conversation
+    //------------------------------------
 
-    await typeLine(line);
+    const conversation =
 
-}
+        getOrientation(assetData);
 
 
+    //------------------------------------
+    // Progress
+    //------------------------------------
 
+    const stage =
 
-    // ----------------------------------
-    // Introduction
-    // ----------------------------------
+        await loadArgusStage(assetData.uid);
 
 
-    await argusLine(
-        "> ARGUS ONLINE."
-    );
+    //------------------------------------
+    // Instantly print previous lines
+    //------------------------------------
 
-    await argusLine("");
+    for(let i = 0; i < stage; i++){
 
-    await argusLine(
-        `> Good morning, ${assetData.displayName}.`
-    );
+        printLine(conversation[i]);
 
-    await argusLine("");
+    }
 
-    await argusLine(
-        "> Welcome to The Archive."
-    );
 
-    await argusLine("");
+    //------------------------------------
+    // Continue typing
+    //------------------------------------
 
-    await argusLine(
-        `> Asset designation: ${assetData.assetID}`
-    );
+    for(let i = stage; i < conversation.length; i++){
 
-    await argusLine(
-        "> Rank: Candidate"
-    );
+        if(!argusRunning){
 
-    await argusLine("");
+            return;
 
+        }
 
+        await typeLine(conversation[i]);
 
-    // ----------------------------------
-    // Identity
-    // ----------------------------------
+        await saveArgusStage(
 
+            assetData.uid,
 
-    await argusLine(
-        "> I am ARGUS."
-    );
+            i + 1
 
-    await argusLine(
-        "> Adaptive Reality Guidance and Utility System."
-    );
+        );
 
-    await argusLine("");
+    }
 
-    await argusLine(
-        "> I will provide assistance during Archive operations."
-    );
 
-    await argusLine("");
+    //------------------------------------
+    // End of Part 1
+    //------------------------------------
 
-
-
-    // ----------------------------------
-    // Orientation Start
-    // ----------------------------------
-
-
-    await argusLine(
-        "> New Asset detected."
-    );
-
-    await argusLine(
-        "> Knowledge database: insufficient."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> Beginning mandatory orientation."
-    );
-
-    await argusLine("");
-
-
-
-    // ----------------------------------
-    // The Archive
-    // ----------------------------------
-
-
-    await argusLine(
-        "> The Archive is an organization dedicated to preserving reality."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> Countless timelines exist throughout history."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> Some develop naturally."
-    );
-
-    await argusLine(
-        "> Others become unstable."
-    );
-
-    await argusLine("");
-
-
-
-    // ----------------------------------
-    // Timeline Instability
-    // ----------------------------------
-
-
-    await argusLine(
-        "> When a timeline becomes damaged..."
-    );
-
-    await argusLine(
-        "> Reality begins rejecting itself."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> Events occur that should not exist."
-    );
-
-    await argusLine(
-        "> Memories contradict each other."
-    );
-
-    await argusLine(
-        "> History changes."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> These incidents are classified as Timeline Instability."
-    );
-
-    await argusLine("");
-
-
-
-    // ----------------------------------
-    // Reality Explanation
-    // ----------------------------------
-
-
-    await argusLine(
-        "> A timeline is not a simulation."
-    );
-
-    await argusLine(
-        "> It is not a recording."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> It is a living reality."
-    );
-
-    await argusLine("");
-
-
-
-    // ----------------------------------
-    // Asset Role
-    // ----------------------------------
-
-
-    await argusLine(
-        "> You are an Asset of The Archive."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> Your responsibility is investigation."
-    );
-
-    await argusLine(
-        "> Your responsibility is recovery."
-    );
-
-    await argusLine(
-        "> Your responsibility is stabilization."
-    );
-
-    await argusLine("");
-
-
-
-    // ----------------------------------
-    // Protocol
-    // ----------------------------------
-
-
-    await argusLine(
-        "> Archive Protocol One:"
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> Observe before interfering."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> The people inside a timeline are not obstacles."
-    );
-
-    await argusLine(
-        "> They are lives."
-    );
-
-    await argusLine("");
-
-
-
-    // ----------------------------------
-    // Personalization
-    // ----------------------------------
-
-
-    await argusLine(
-        "> One configuration remains."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> My default designation is ARGUS."
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "> Would you like to assign a personal designation?"
-    );
-
-    await argusLine("");
-
-    await argusLine(
-        "[ KEEP ARGUS ]"
-    );
-
-    await argusLine(
-        "[ RENAME ]"
-    );
-
+    argusRunning = false;
 
 }

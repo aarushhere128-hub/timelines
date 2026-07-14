@@ -16,30 +16,38 @@
 
 }
 
+#consoleScreen {
 
-#consoleScreen,
-#argusScreen {
+    display:flex;
 
-    position:fixed;
+    flex-direction:column;
 
-    top:0;
-    left:0;
+    justify-content:center;
 
-    width:100%;
-    height:100%;
+    align-items:center;
 
-    background:black;
+    gap:20px;
 
-    z-index:1000;
-
-    padding:30px;
+    text-align:center;
 
 }
 
 
+
+
 #argusScreen {
 
-    z-index:2000;
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
 
 }
 body{

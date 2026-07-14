@@ -73,3 +73,20 @@ export async function completeOrientation(uid){
     });
 
 }
+// --------------------------------------
+// Save ARGUS Name
+// --------------------------------------
+
+export async function saveArgusName(uid, name){
+
+    const assetRef =
+    doc(db, "assets", uid);
+
+    await updateDoc(assetRef, {
+
+        argusName: name,
+        argusConfigured: true
+
+    });
+
+}

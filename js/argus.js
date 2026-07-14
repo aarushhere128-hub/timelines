@@ -8,20 +8,23 @@ import {
     clearTerminal,
     setTerminalScreen
 } from "./terminal.js";
-
+import {
+    saveArgusLine,
+    loadArgusConversation
+} from "./argusDatabase.js";
 
 // --------------------------------------
 // ARGUS State
 // --------------------------------------
 
 let argusActive = false;
-
+let currentUserUID;
 
 // --------------------------------------
 // Safe ARGUS Line
 // --------------------------------------
-
 async function argusLine(text){
+
 
     if(!argusActive){
 
@@ -30,7 +33,16 @@ async function argusLine(text){
     }
 
 
+
     await typeLine(text);
+
+
+
+    await saveArgusLine(
+        currentUserUID,
+        text
+    );
+
 
 
     return true;
@@ -54,6 +66,8 @@ export function stopArgus(){
 // --------------------------------------
 
 export async function startArgusOrientation(assetData){
+
+    currentUserUID = assetData.uid;
 
 
     // Prevent duplicate conversations
@@ -89,6 +103,15 @@ export async function startArgusOrientation(assetData){
     setTerminalScreen(argusDialogue);
 
     clearTerminal();
+    const history =
+await loadArgusConversation(assetData.uid);
+
+
+for(const line of history){
+
+    await typeLine(line);
+
+}
 
 
 

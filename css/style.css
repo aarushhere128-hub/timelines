@@ -35,19 +35,50 @@
 }
 #argusChoices{
 
-    margin-top:30px;
+    margin-top:15px;
 
     display:flex;
 
     flex-direction:column;
 
-    gap:15px;
+    gap:6px;
 
 }
 
 #argusChoices button{
 
-    width:220px;
+    all:unset;
+
+    display:block;
+
+    cursor:pointer;
+
+    color:#d7d7d7;
+
+    font-family:inherit;
+
+    font-size:1rem;
+
+    padding:2px 0;
+
+    transition:color .15s;
+
+}
+
+#argusChoices button::before{
+
+    content:"> ";
+
+}
+
+#argusChoices button:hover{
+
+    color:#00ff66;
+
+}
+#argusChoices button.selected{
+
+    color:#00ff66;
 
 }
 #consoleScreen {

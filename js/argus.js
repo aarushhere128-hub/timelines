@@ -16,7 +16,8 @@ import {
 import {
 
     loadArgusStage,
-    saveArgusStage
+    saveArgusStage,
+    saveArgusName
 
 } from "./argusDatabase.js";
 
@@ -87,6 +88,11 @@ export async function startArgusOrientation(assetData){
     const stage =
 
         await loadArgusStage(assetData.uid);
+    if(assetData.argusConfigured){
+
+    return;
+
+}
 
 
     //------------------------------------
@@ -174,15 +180,23 @@ export async function startArgusOrientation(assetData){
 
 async function keepArgus(assetData){
 
+
     document
     .querySelectorAll(".argusOption")
     .forEach(button => button.remove());
+
+
+    await saveArgusName(
+        assetData.uid,
+        "ARGUS"
+    );
+
 
     await typeLine("");
 
     await typeLine("> Designation accepted.");
 
-    await typeLine("> I will continue responding as ARGUS.");
+    await typeLine("> ARGUS will remain my designation.");
 
     await typeLine("");
 
@@ -197,16 +211,38 @@ async function keepArgus(assetData){
 
 async function renameArgus(assetData){
 
+
     document
     .querySelectorAll(".argusOption")
     .forEach(button => button.remove());
+
 
     await typeLine("");
 
     await typeLine("> Enter new designation.");
 
-    const newName = await ask("");
 
-    console.log(newName);
+    const newName =
+    await ask("");
+
+
+    await saveArgusName(
+        assetData.uid,
+        newName
+    );
+
+
+    await typeLine("");
+
+    await typeLine("> Designation updated.");
+
+    await typeLine(
+        `> I will now respond as ${newName}.`
+    );
+
+
+    await typeLine("");
+
+    await typeLine("> Orientation complete.");
 
 }

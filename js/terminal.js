@@ -70,7 +70,19 @@ export function typeLine(text, speed = 30){
 
 }
 
+// --------------------------------------
+// Print Line Instantly
+// --------------------------------------
 
+export function printLine(text){
+
+    const p = document.createElement("p");
+
+    p.textContent = text;
+
+    screen.appendChild(p);
+
+}
 
 // --------------------------------------
 // Terminal Input

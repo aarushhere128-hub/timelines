@@ -8,6 +8,9 @@ import {
     getNextDeployment
 } from "./timeline.js";
 import {
+    startArgusOrientation
+} from "./argus.js";
+import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
@@ -107,9 +110,9 @@ document
     // Load deployment
 
 
-  const currentDeployment = getNextDeployment();
+currentDeployment = getNextDeployment();
 
-if (!deployment) {
+if (!currentDeployment) {
 
     console.error("No deployment found.");
 
@@ -195,23 +198,9 @@ argusButton.addEventListener("click", () => {
 
     argusScreen.classList.remove("hidden");
 
-
-    document.getElementById("argusDialogue").innerHTML =
-
-    `
-    <p>ARGUS ONLINE.</p>
-
-    <p>
-    Good morning, ${assetData.displayName}.
-    </p>
-
-    <p>
-    How may I assist you?
-    </p>
-    `;
+    startArgusOrientation(assetData);
 
 });
-
 
 closeArgus.addEventListener("click", () => {
 

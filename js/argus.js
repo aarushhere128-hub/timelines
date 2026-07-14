@@ -67,6 +67,12 @@ export async function startArgusOrientation(assetData){
     setTerminalScreen(dialogue);
 
     clearTerminal();
+    const choices =
+document.getElementById("argusChoices");
+
+choices.classList.add("hidden");
+
+choices.innerHTML = "";
 
 
     //------------------------------------
@@ -127,6 +133,72 @@ export async function startArgusOrientation(assetData){
     // End of Part 1
     //------------------------------------
 
-    argusRunning = false;
+    showRenameChoices(assetData);
+  
+}
+  function showRenameChoices(assetData){
+
+    const choices =
+    document.getElementById("argusChoices");
+
+    choices.classList.remove("hidden");
+
+    choices.innerHTML = `
+
+        <button id="keepArgus">
+
+            KEEP ARGUS
+
+        </button>
+
+        <button id="renameArgus">
+
+            RENAME
+
+        </button>
+
+    `;
+
+
+    document
+
+    .getElementById("keepArgus")
+
+    .onclick = ()=>{
+
+        keepArgus(assetData);
+
+    };
+
+
+    document
+
+    .getElementById("renameArgus")
+
+    .onclick = ()=>{
+
+        renameArgus(assetData);
+
+    };
+
+}
+// --------------------------------------
+// KEEP ARGUS
+// --------------------------------------
+
+function keepArgus(assetData){
+
+    console.log("KEEP ARGUS");
+
+}
+
+
+// --------------------------------------
+// RENAME ARGUS
+// --------------------------------------
+
+function renameArgus(assetData){
+
+    console.log("RENAME ARGUS");
 
 }

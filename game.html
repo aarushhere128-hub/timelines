@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>The Archive</title>
+    <title>THE ARCHIVE</title>
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/crt.css">
@@ -23,48 +23,47 @@
         <h1>THE ARCHIVE</h1>
         <p>Reality Preservation Division</p>
 
-        <div class="tablet" id="tabletButton">
-            📱
-        </div>
-
     </div>
-
 
     <div class="screen" id="gameScreen">
 
-        <p>> ARGUS ONLINE</p>
+        <h2>NEXT DEPLOYMENT</h2>
 
         <br>
 
-        <p>Good morning, Asset.</p>
+        <p>
+            <strong>Timeline ID:</strong>
+            <span id="timelineID"></span>
+        </p>
 
-        <p>Synchronization complete.</p>
-
-        <p>No active deployment.</p>
-
-        <br>
-
-        <p>Choose an action.</p>
-
-        <br>
-
-        <div class="buttons">
-
-            <button id="beginTimeline">
-                BEGIN NEXT TIMELINE
-            </button>
-
-        </div>
+        <p>
+            <strong>Designation:</strong>
+            <span id="timelineName"></span>
+        </p>
 
         <br>
 
-        <p class="cursor">█</p>
+        <h3>Deployment Conditions</h3>
+
+        <div id="deploymentConditions"></div>
+
+        <br><br>
+
+        <button id="deployButton">
+            DEPLOY
+        </button>
+
+    </div>
+
+    <div id="assetConsole">
+
+        🖥 Asset Console
 
     </div>
 
 </div>
 
-<script src="js/game.js"></script>
+<script type="module" src="js/game.js"></script>
 
 </body>
 

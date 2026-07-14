@@ -18,36 +18,60 @@
 
 #consoleScreen {
 
-    display:flex;
+    position: fixed;
 
-    flex-direction:column;
+    top: 0;
+    left: 0;
 
-    justify-content:center;
+    width: 100%;
+    height: 100%;
 
-    align-items:center;
+    background: black;
 
-    gap:20px;
+    z-index: 1000;
 
-    text-align:center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+    text-align: center;
 
 }
 
 
-
-
 #argusScreen {
 
-    display:flex;
+    position: fixed;
 
-    flex-direction:column;
+    top: 0;
+    left: 0;
 
-    justify-content:center;
+    width: 100%;
+    height: 100%;
 
-    align-items:center;
+    background: black;
 
-    text-align:center;
+    z-index: 2000;
 
-    padding:40px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+    text-align: center;
 
 }
 body{

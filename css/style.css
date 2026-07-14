@@ -15,7 +15,24 @@
     display:none;
 
 }
+#argusDialogue::after {
 
+    content:"█";
+
+    animation:blink 1s infinite;
+
+}
+
+
+@keyframes blink {
+
+    50% {
+
+        opacity:0;
+
+    }
+
+}
 #consoleScreen {
 
     position: fixed;

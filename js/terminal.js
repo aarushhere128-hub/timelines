@@ -4,11 +4,38 @@
 // ======================================
 
 
-const screen = document.querySelector(".screen");
+let currentScreen =
+document.querySelector(".screen");
 
 
 // --------------------------------------
 // ARGUS Typewriter
+// --------------------------------------
+
+// ======================================
+// TIMELINES: THE ARCHIVE
+// terminal.js
+// ======================================
+
+
+let screen =
+document.querySelector(".screen");
+
+
+// --------------------------------------
+// Change Target Screen
+// --------------------------------------
+
+export function setTerminalScreen(element){
+
+    screen = element;
+
+}
+
+
+
+// --------------------------------------
+// Type Line
 // --------------------------------------
 
 export function typeLine(text, speed = 30){

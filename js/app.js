@@ -2,6 +2,7 @@
 // TIMELINES: THE ARCHIVE
 // app.js
 // ======================================
+import { checkSession } from "./session.js";
 import { registerAsset } from "./auth.js";
 import { typeLine, ask, clearTerminal } from "./terminal.js";
 const screen = document.querySelector(".screen");
@@ -133,4 +134,43 @@ async function showIntro() {
 }
 
 
-showIntro();
+checkSession(async(user)=>{
+
+    if(!user){
+
+        showIntro();
+        return;
+
+    }
+
+    await user.reload();
+
+    if(!user.emailVerified){
+
+        clearTerminal();
+
+        await typeLine("Archive Email not verified.");
+        await typeLine("");
+        await typeLine("Please verify your Archive Email.");
+        await typeLine("");
+        await typeLine("Refresh this page after verification.");
+
+        return;
+
+    }
+
+    clearTerminal();
+
+    await typeLine("Archive Email Verified.");
+    await typeLine("");
+    await typeLine("Welcome back.");
+    await typeLine("");
+    await typeLine("Connecting to The Archive...");
+
+    setTimeout(()=>{
+
+        window.location.href="game.html";
+
+    },1500);
+
+});

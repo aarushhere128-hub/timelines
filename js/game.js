@@ -87,19 +87,7 @@ onAuthStateChanged(auth, async (user) => {
 const assetSnap = await getDoc(assetRef);
 
 
-// DEBUG
 
-console.log("USER UID:", user.uid);
-
-console.log(
-    "PROFILE EXISTS:",
-    assetSnap.exists()
-);
-
-console.log(
-    "PROFILE DATA:",
-    assetSnap.data()
-);
 
 
 // Continue
@@ -111,7 +99,10 @@ if (!assetSnap.exists()) {
     return;
 
 }
-
+const assetData = assetSnap.data();
+document
+.getElementById("argusButtonName")
+.textContent = assetData.argusName;
     // Load deployment
 
 
@@ -162,5 +153,12 @@ document.getElementById("consoleMenu");
 consoleButton.addEventListener("click", () => {
 
     consoleMenu.classList.toggle("hidden");
+
+});
+document
+.getElementById("argusButton")
+.addEventListener("click", () => {
+
+    console.log("Opening ARGUS");
 
 });

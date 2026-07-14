@@ -3,7 +3,7 @@
 // app.js
 // ======================================
 import { checkSession } from "./session.js";
-import { registerAsset } from "./auth.js";
+import { registerAsset, loginAsset } from "./auth.js";
 import { typeLine, ask, clearTerminal } from "./terminal.js";
 const screen = document.querySelector(".screen");
 
@@ -11,7 +11,47 @@ let player = {};
 
 
 
+async function startLogin(email = "") {
 
+    clearTerminal();
+
+    await typeLine("Searching Archive Records...");
+    await typeLine("");
+    await typeLine("Existing Archive Record located.");
+    await typeLine("");
+    await typeLine("Authentication required.");
+    await typeLine("");
+
+    const loginEmail =
+        email || await ask("Archive Email");
+
+    const password =
+        await ask("Archive Access Key");
+
+    try {
+
+        await loginAsset(loginEmail, password);
+
+        await typeLine("");
+        await typeLine("Identity confirmed.");
+        await typeLine("");
+        await typeLine("Welcome back, Asset.");
+
+        setTimeout(() => {
+
+            window.location.href = "asset-create.html";
+
+        }, 1500);
+
+    } catch {
+
+        await typeLine("");
+        await typeLine("Authentication failed.");
+        await typeLine("Archive Access Key rejected.");
+
+    }
+
+}
 // -----------------------------
 // Registration Flow
 // -----------------------------
@@ -72,9 +112,30 @@ try {
     await typeLine("");
     await typeLine("Once verified, restart the application to continue.");
 
-} catch (error) {
+} catch(error){
 
-    await typeLine("Registration Failed.");
+    if(error.code === "auth/email-already-in-use"){
+
+        await typeLine("");
+        await typeLine("Searching Archive Records...");
+        await typeLine("");
+        await typeLine("Match found.");
+        await typeLine("");
+        await typeLine("It appears you are already connected with The Archive.");
+        await typeLine("");
+
+        setTimeout(() => {
+
+            startLogin(player.email);
+
+        }, 1500);
+
+        return;
+
+    }
+
+    await typeLine("");
+    await typeLine("Registration failed.");
     await typeLine(error.message);
 
 }

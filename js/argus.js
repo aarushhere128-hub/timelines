@@ -11,13 +11,79 @@ import {
 
 
 // --------------------------------------
+// ARGUS State
+// --------------------------------------
+
+let argusActive = false;
+
+
+// --------------------------------------
+// Safe ARGUS Line
+// --------------------------------------
+
+async function argusLine(text){
+
+    if(!argusActive){
+
+        return false;
+
+    }
+
+
+    await typeLine(text);
+
+
+    return true;
+
+}
+
+
+// --------------------------------------
+// Stop ARGUS
+// --------------------------------------
+
+export function stopArgus(){
+
+    argusActive = false;
+
+}
+
+
+// --------------------------------------
 // ARGUS Orientation
 // --------------------------------------
 
 export async function startArgusOrientation(assetData){
 
+
+    // Prevent duplicate conversations
+
+    if(argusActive){
+
+        return;
+
+    }
+
+
+    argusActive = true;
+
+
+
     const argusDialogue =
     document.getElementById("argusDialogue");
+
+
+
+    if(!argusDialogue){
+
+        console.error(
+            "ARGUS dialogue screen not found."
+        );
+
+        return;
+
+    }
+
 
 
     setTerminalScreen(argusDialogue);
@@ -25,230 +91,264 @@ export async function startArgusOrientation(assetData){
     clearTerminal();
 
 
-    await typeLine("> ARGUS ONLINE.");
 
-    await typeLine("");
 
-    await typeLine(
+    // ----------------------------------
+    // Introduction
+    // ----------------------------------
+
+
+    await argusLine(
+        "> ARGUS ONLINE."
+    );
+
+    await argusLine("");
+
+    await argusLine(
         `> Good morning, ${assetData.displayName}.`
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Welcome to The Archive."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         `> Asset designation: ${assetData.assetID}`
     );
 
-    await typeLine(
+    await argusLine(
         "> Rank: Candidate"
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // INTRODUCTION
+    // ----------------------------------
+    // Identity
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> I am ARGUS."
     );
 
-    await typeLine(
+    await argusLine(
         "> Adaptive Reality Guidance and Utility System."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> I will provide assistance during Archive operations."
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // ORIENTATION START
+    // ----------------------------------
+    // Orientation Start
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> New Asset detected."
     );
 
-    await typeLine(
+    await argusLine(
         "> Knowledge database: insufficient."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Beginning mandatory orientation."
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // SECTION 1
+    // ----------------------------------
+    // The Archive
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> The Archive is an organization dedicated to preserving reality."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Countless timelines exist throughout history."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Some develop naturally."
     );
 
-    await typeLine(
+    await argusLine(
         "> Others become unstable."
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // SECTION 2
+    // ----------------------------------
+    // Timeline Instability
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> When a timeline becomes damaged..."
     );
 
-    await typeLine(
+    await argusLine(
         "> Reality begins rejecting itself."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Events occur that should not exist."
     );
 
-    await typeLine(
+    await argusLine(
         "> Memories contradict each other."
     );
 
-    await typeLine(
+    await argusLine(
         "> History changes."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> These incidents are classified as Timeline Instability."
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // SECTION 3
+    // ----------------------------------
+    // Reality Explanation
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> A timeline is not a simulation."
     );
 
-    await typeLine(
+    await argusLine(
         "> It is not a recording."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> It is a living reality."
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // ROLE
+    // ----------------------------------
+    // Asset Role
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> You are an Asset of The Archive."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Your responsibility is investigation."
     );
 
-    await typeLine(
+    await argusLine(
         "> Your responsibility is recovery."
     );
 
-    await typeLine(
+    await argusLine(
         "> Your responsibility is stabilization."
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // WARNING
+    // ----------------------------------
+    // Protocol
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> Archive Protocol One:"
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Observe before interfering."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> The people inside a timeline are not obstacles."
     );
 
-    await typeLine(
+    await argusLine(
         "> They are lives."
     );
 
-    await typeLine("");
+    await argusLine("");
 
 
 
-    // PERSONALIZATION
+    // ----------------------------------
+    // Personalization
+    // ----------------------------------
 
-    await typeLine(
+
+    await argusLine(
         "> One configuration remains."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> My default designation is ARGUS."
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "> Would you like to assign a personal designation?"
     );
 
-    await typeLine("");
+    await argusLine("");
 
-    await typeLine(
+    await argusLine(
         "[ KEEP ARGUS ]"
     );
 
-    await typeLine(
+    await argusLine(
         "[ RENAME ]"
     );
+
 
 }

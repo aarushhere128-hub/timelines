@@ -17,7 +17,7 @@ import {
 export async function startArgusOrientation(assetData) {
 
 
-    clearTerminal();
+
 
 
     // INTRO

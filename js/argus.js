@@ -55,11 +55,9 @@ export async function startArgusOrientation(
     replay = false
 ){
 
-    if(argusRunning){
-
-        return;
-
-    }
+    if(argusRunning && !replay){
+    return;
+}
 
     argusRunning = true;
 

@@ -3,20 +3,20 @@
 // timelineMain.js
 // ======================================
 
+
 import {
 
-    getTimeline
+    startSceneEngine
 
-} from "./timeline.js";
+} from "./sceneEngine.js";
 
 
-// --------------------------------------
-// Current Timeline
-// --------------------------------------
+import {
 
-const timeline =
+    A001
 
-getTimeline("A-001");
+} from "./trainingTimelines/A001.js";
+
 
 
 // --------------------------------------
@@ -26,12 +26,9 @@ getTimeline("A-001");
 startTimeline();
 
 
-// --------------------------------------
-// Timeline
-// --------------------------------------
 
 function startTimeline(){
 
-    console.log(timeline);
+    startSceneEngine(A001);
 
 }

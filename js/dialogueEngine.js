@@ -10,7 +10,11 @@ import {
     clearTerminal
 
 } from "./terminal.js";
+import {
 
+    gameState
+
+} from "./gameState.js";
 
 let currentDialogue;
 
@@ -115,18 +119,72 @@ function showChoices(choices){
         button.onclick = ()=>{
 
 
-            showDialogueLine(
-                choice.next
-            );
+    applyEffect(
+        choice.effect
+    );
 
 
-        };
+    showDialogueLine(
+        choice.next
+    );
+
+
+};
 
 
         container.appendChild(button);
 
 
     });
+
+
+}
+function applyEffect(effect){
+
+
+    if(!effect){
+
+        return;
+
+    }
+
+
+
+    switch(effect){
+
+
+        case "gainRowanTrust":
+
+            gameState.rowanTrust++;
+
+            break;
+
+
+
+        case "loseRowanTrust":
+
+            gameState.rowanTrust--;
+
+            break;
+
+
+
+        case "metRowan":
+
+            gameState.flags.metRowan = true;
+
+            break;
+
+
+
+        case "learnedTruth":
+
+            gameState.flags.learnedTruth = true;
+
+            break;
+
+
+    }
 
 
 }

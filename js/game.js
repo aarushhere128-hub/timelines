@@ -130,17 +130,28 @@ loadDeployment(currentDeployment);
 // Deploy Button
 // --------------------------------------
 
+
+// --------------------------------------
+// Deploy Button
+// --------------------------------------
+
 document
 .getElementById("deployButton")
-.addEventListener("click", () => {
+.addEventListener("click", async ()=>{
 
-    // Timeline page later
+    if(!assetData.argusConfigured){
 
-  window.location.href =
-"timeline.html?id=" + currentDeployment.id;
+        alert(
+            "Deployment denied.\n\nComplete mandatory ARGUS orientation first."
+        );
+
+        return;
+
+    }
+
+    window.location.href = "timeline.html";
 
 });
-
 
 // --------------------------------------
 // Asset Console

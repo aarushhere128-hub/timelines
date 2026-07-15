@@ -50,7 +50,10 @@ export function stopArgus(){
 // Start ARGUS
 // --------------------------------------
 
-export async function startArgusOrientation(assetData){
+export async function startArgusOrientation(
+    assetData,
+    replay = false
+){
 
     if(argusRunning){
 
@@ -69,7 +72,7 @@ export async function startArgusOrientation(assetData){
     setTerminalScreen(dialogue);
 
     clearTerminal();
-    if(assetData.argusConfigured){
+    if(assetData.argusConfigured && !replay){
 
     await startArgusHome(assetData);
 
@@ -102,18 +105,24 @@ export async function startArgusOrientation(assetData){
     // Instantly print previous lines
     //------------------------------------
 
+    if(!replay){
+
     for(let i = 0; i < stage; i++){
 
         printLine(conversation[i]);
 
     }
 
+}
 
     //------------------------------------
     // Continue typing
     //------------------------------------
 
-    for(let i = stage; i < conversation.length; i++){
+    const startLine =
+replay ? 0 : stage;
+
+for(let i = startLine; i < conversation.length; i++){
 
         if(!argusRunning){
 
@@ -123,13 +132,14 @@ export async function startArgusOrientation(assetData){
 
         await typeLine(conversation[i]);
 
-        await saveArgusStage(
+        if(!replay){
 
-            assetData.uid,
+    await saveArgusStage(
+        assetData.uid,
+        i + 1
+    );
 
-            i + 1
-
-        );
+}
 
     }
 
@@ -138,7 +148,18 @@ export async function startArgusOrientation(assetData){
     // End of Part 1
     //------------------------------------
 
-    if(!assetData.argusConfigured){
+   if(replay){
+
+    await typeLine("");
+
+    await typeLine("> End of archived orientation.");
+
+    await typeLine("");
+
+    showReturnHome(assetData);
+
+}
+else if(!assetData.argusConfigured){
 
     showRenameChoices(assetData);
 
@@ -320,6 +341,38 @@ async function startArgusHome(assetData){
     .onclick = ()=>{
 
         alert("Coming Soon");
+
+    };
+
+}
+function showReturnHome(assetData){
+
+    const dialogue =
+    document.getElementById("argusDialogue");
+
+    dialogue.insertAdjacentHTML(
+
+        "beforeend",
+
+        `
+
+        <button class="argusOption" id="returnHome">
+
+            > RETURN
+
+        </button>
+
+        `
+
+    );
+
+    document
+    .getElementById("returnHome")
+    .onclick = ()=>{
+
+        clearTerminal();
+
+        startArgusHome(assetData);
 
     };
 

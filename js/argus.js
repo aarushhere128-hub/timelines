@@ -221,17 +221,38 @@ async function renameArgus(assetData){
 
     await typeLine("");
 
-    await typeLine("> Enter new designation.");
+await typeLine("> Enter new designation.");
 
+let newName;
 
-    const newName =
-    await ask("");
+while(true){
 
+    newName = (await ask("")).trim();
 
-    await saveArgusName(
-        assetData.uid,
-        newName
-    );
+    if(newName.length < 2){
+
+        await typeLine("> Designation must contain at least 2 characters.");
+        await typeLine("> Enter new designation.");
+        continue;
+
+    }
+
+    if(newName.length > 20){
+
+        await typeLine("> Designation cannot exceed 20 characters.");
+        await typeLine("> Enter new designation.");
+        continue;
+
+    }
+
+    break;
+
+}
+
+await saveArgusName(
+    assetData.uid,
+    newName
+);
     assetData.argusConfigured = true;
 assetData.argusName = newName;
 

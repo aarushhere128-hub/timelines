@@ -41,3 +41,32 @@ body{
     margin-top:50px;
 
 }
+.timelineOption{
+
+    display:block;
+
+    width:100%;
+
+    background:none;
+
+    border:none;
+
+    color:inherit;
+
+    font:inherit;
+
+    text-align:left;
+
+    padding:10px;
+
+    cursor:pointer;
+
+}
+
+.timelineOption:hover{
+
+    background:var(--terminal-color);
+
+    color:black;
+
+}

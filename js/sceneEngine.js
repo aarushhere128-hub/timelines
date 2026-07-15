@@ -2,7 +2,12 @@
 // TIMELINES: THE ARCHIVE
 // sceneEngine.js
 // ======================================
+import {
 
+    typeLine,
+    clearTerminal
+
+} from "./terminal.js";
 
 let currentTimeline;
 
@@ -26,25 +31,24 @@ export function startSceneEngine(timeline){
 // Load Scene
 // --------------------------------------
 
-function loadScene(sceneID){
+async function loadScene(sceneID){
 
     const scene =
     currentTimeline.scenes[sceneID];
-
-
-    const textBox =
-    document.getElementById("timelineText");
 
 
     const choicesBox =
     document.getElementById("timelineChoices");
 
 
-    textBox.textContent =
-    scene.text;
-
-
     choicesBox.innerHTML = "";
+
+
+    clearTerminal();
+
+
+    await typeLine(scene.text);
+
 
 
     scene.choices.forEach(choice=>{
@@ -64,9 +68,7 @@ function loadScene(sceneID){
 
         button.onclick = ()=>{
 
-            loadScene(
-                choice.next
-            );
+            loadScene(choice.next);
 
         };
 

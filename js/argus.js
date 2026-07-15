@@ -88,11 +88,7 @@ export async function startArgusOrientation(assetData){
     const stage =
 
         await loadArgusStage(assetData.uid);
-    if(assetData.argusConfigured){
-
-    return;
-
-}
+  
 
 
     //------------------------------------
@@ -135,7 +131,11 @@ export async function startArgusOrientation(assetData){
     // End of Part 1
     //------------------------------------
 
+    if(!assetData.argusConfigured){
+
     showRenameChoices(assetData);
+
+}
   
 }
   function showRenameChoices(assetData){
@@ -190,6 +190,8 @@ async function keepArgus(assetData){
         assetData.uid,
         "ARGUS"
     );
+    assetData.argusConfigured = true;
+assetData.argusName = "ARGUS";
 
 
     await typeLine("");
@@ -230,6 +232,8 @@ async function renameArgus(assetData){
         assetData.uid,
         newName
     );
+    assetData.argusConfigured = true;
+assetData.argusName = newName;
 
 
     await typeLine("");

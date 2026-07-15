@@ -12,7 +12,6 @@ import {
 } from "./terminal.js";
 
 
-
 let currentDialogue;
 
 
@@ -27,7 +26,9 @@ export async function startDialogue(dialogue){
     currentDialogue = dialogue;
 
 
-    await showDialogueLine(0);
+    await showDialogueLine(
+        dialogue.start
+    );
 
 
 }
@@ -35,19 +36,21 @@ export async function startDialogue(dialogue){
 
 
 // --------------------------------------
-// Show Dialogue Line
+// Show Dialogue Node
 // --------------------------------------
 
-async function showDialogueLine(index){
+async function showDialogueLine(id){
 
 
     const line =
-    currentDialogue.lines[index];
+    currentDialogue.lines[id];
+
+
     const container =
-document.getElementById("timelineChoices");
+    document.getElementById("timelineChoices");
 
 
-container.innerHTML = "";
+    container.innerHTML = "";
 
 
     if(!line){
@@ -57,17 +60,20 @@ container.innerHTML = "";
     }
 
 
+
     clearTerminal();
 
 
+
     await typeLine(
-        `${line.speaker}:`
+        line.speaker + ":"
     );
 
 
     await typeLine(
         line.text
     );
+
 
 
     showChoices(
@@ -80,7 +86,7 @@ container.innerHTML = "";
 
 
 // --------------------------------------
-// Show Choices
+// Choices
 // --------------------------------------
 
 function showChoices(choices){
@@ -88,10 +94,6 @@ function showChoices(choices){
 
     const container =
     document.getElementById("timelineChoices");
-
-
-    container.innerHTML="";
-
 
 
     choices.forEach(choice=>{

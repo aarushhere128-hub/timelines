@@ -69,6 +69,13 @@ export async function startArgusOrientation(assetData){
     setTerminalScreen(dialogue);
 
     clearTerminal();
+    if(assetData.argusConfigured){
+
+    await startArgusHome(assetData);
+
+    return;
+
+}
    
 
 
@@ -269,5 +276,51 @@ assetData.argusName = newName;
     await typeLine("");
 
     await typeLine("> Orientation complete.");
+
+}
+// --------------------------------------
+// ARGUS HOME
+// --------------------------------------
+
+async function startArgusHome(assetData){
+
+    await typeLine(`${assetData.argusName} ONLINE.`);
+
+    await typeLine("");
+
+    await typeLine(`> Welcome back, ${assetData.displayName}.`);
+
+    await typeLine("");
+
+    await typeLine("> Standing by.");
+
+    await typeLine("");
+
+    const dialogue =
+    document.getElementById("argusDialogue");
+
+    dialogue.insertAdjacentHTML(
+
+        "beforeend",
+
+        `
+
+        <button class="argusOption" id="replayOrientation">
+
+            > REPLAY ORIENTATION
+
+        </button>
+
+        `
+
+    );
+
+    document
+    .getElementById("replayOrientation")
+    .onclick = ()=>{
+
+        alert("Coming Soon");
+
+    };
 
 }

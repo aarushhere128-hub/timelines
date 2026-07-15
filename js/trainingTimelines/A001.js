@@ -6,17 +6,19 @@
 
 export const A001 = {
 
-    id: "A-001",
 
-    name: "Silent Justice",
+    id:"A-001",
 
-    start: "arrival",
+    name:"Silent Justice",
 
-
-    scenes: {
+    start:"arrival",
 
 
-        arrival: {
+    scenes:{
+
+
+        arrival:{
+
 
             text:
 
@@ -25,22 +27,21 @@ export const A001 = {
             "Something feels wrong.",
 
 
-            choices: [
+            choices:[
 
                 {
 
-                    text: "Walk toward the village",
+                    text:"Walk toward the village",
 
-                    next: "village"
+                    next:"village"
 
                 },
 
-
                 {
 
-                    text: "Inspect the surroundings",
+                    text:"Inspect the surroundings",
 
-                    next: "road"
+                    next:"road"
 
                 }
 
@@ -49,7 +50,9 @@ export const A001 = {
         },
 
 
-        village: {
+
+        village:{
+
 
             text:
 
@@ -57,13 +60,13 @@ export const A001 = {
             "Smoke rises from several houses.",
 
 
-            choices: [
+            choices:[
 
                 {
 
-                    text: "Enter the village square",
+                    text:"Enter the village square",
 
-                    next: "square"
+                    next:"villageSquare"
 
                 }
 
@@ -72,7 +75,9 @@ export const A001 = {
         },
 
 
-        road: {
+
+        road:{
+
 
             text:
 
@@ -80,13 +85,13 @@ export const A001 = {
             "There are footprints leading toward the village.",
 
 
-            choices: [
+            choices:[
 
                 {
 
-                    text: "Follow the footprints",
+                    text:"Follow the footprints",
 
-                    next: "village"
+                    next:"village"
 
                 }
 
@@ -95,138 +100,65 @@ export const A001 = {
         },
 
 
-       villageSquare:{
 
+        villageSquare:{
 
-text:
 
-"The village square is silent. Several people watch you.",
+            text:
 
+            "The village square is silent. Several people watch you.",
 
-npcs:[
 
-{
+            npcs:[
 
-name:"Elder Rowan",
 
-scene:"rowan"
+                {
 
-},
+                    name:"Elder Rowan",
 
-{
+                    dialogue:"rowan"
 
-name:"Mira",
+                },
 
-scene:"mira"
 
-},
+                {
 
-{
+                    name:"Mira",
 
-name:"Captain Vale",
+                    dialogue:"mira"
 
-scene:"vale"
+                },
 
-}
 
-],
+                {
 
+                    name:"Captain Vale",
 
-choices:[
+                    dialogue:"vale"
 
-{
+                }
 
-text:"Continue investigation",
 
-next:"investigation"
+            ],
 
-}
 
-]
+            choices:[
 
-rowan:{
+                {
 
+                    text:"Continue investigation",
 
-text:
+                    next:"investigation"
 
-"Elder Rowan looks at you.\n\n" +
+                }
 
-"You are not from here.\n\n" +
+            ]
 
-"The kingdom was not always like this.",
+        }
 
-
-choices:[
-
-{
-
-text:"Remember what Rowan said",
-
-next:"villageSquare",
-
-effect:"metRowan"
-
-}
-
-]
-
-
-}
-mira:{
-
-
-text:
-
-"Mira lowers her eyes.\n\n" +
-
-"Some histories deserve to disappear.",
-
-
-choices:[
-
-{
-
-text:"Return",
-
-next:"villageSquare",
-
-effect:"metMira"
-
-}
-
-]
-
-
-}
-vale:{
-
-
-text:
-
-"Captain Vale grips his sword.\n\n" +
-
-"Order matters more than happiness.",
-
-
-choices:[
-
-{
-
-text:"Return",
-
-next:"villageSquare",
-
-effect:"metVale"
-
-}
-
-]
-
-
-}
-}
 
 
     }
+
 
 };

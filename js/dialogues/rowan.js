@@ -157,7 +157,7 @@ speaker:"Rowan",
 
 text:
 
-"Everyone who arrives here thinks they belong. You do not."
+"Everyone who arrives here thinks they belong. You do not.",
 
 
 choices:[
@@ -485,7 +485,7 @@ speaker:"Rowan",
 
 text:
 
-"Speak to the others before you decide. One person's truth is only a fragment."
+"Speak to the others before you decide. One person's truth is only a fragment.",
 
 
 choices:[]

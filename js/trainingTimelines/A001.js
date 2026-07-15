@@ -95,16 +95,136 @@ export const A001 = {
         },
 
 
-        square: {
+       villageSquare:{
 
-            text:
 
-            "An elderly man watches you carefully.\n\n" +
-            "\"You are not from here.\"",
+text:
 
-            choices: []
+"The village square is silent. Several people watch you.",
 
-        }
+
+npcs:[
+
+{
+
+name:"Elder Rowan",
+
+scene:"rowan"
+
+},
+
+{
+
+name:"Mira",
+
+scene:"mira"
+
+},
+
+{
+
+name:"Captain Vale",
+
+scene:"vale"
+
+}
+
+],
+
+
+choices:[
+
+{
+
+text:"Continue investigation",
+
+next:"investigation"
+
+}
+
+]
+
+rowan:{
+
+
+text:
+
+"Elder Rowan looks at you.\n\n" +
+
+"You are not from here.\n\n" +
+
+"The kingdom was not always like this.",
+
+
+choices:[
+
+{
+
+text:"Remember what Rowan said",
+
+next:"villageSquare",
+
+effect:"metRowan"
+
+}
+
+]
+
+
+}
+mira:{
+
+
+text:
+
+"Mira lowers her eyes.\n\n" +
+
+"Some histories deserve to disappear.",
+
+
+choices:[
+
+{
+
+text:"Return",
+
+next:"villageSquare",
+
+effect:"metMira"
+
+}
+
+]
+
+
+}
+vale:{
+
+
+text:
+
+"Captain Vale grips his sword.\n\n" +
+
+"Order matters more than happiness.",
+
+
+choices:[
+
+{
+
+text:"Return",
+
+next:"villageSquare",
+
+effect:"metVale"
+
+}
+
+]
+
+
+}
+}
 
 
     }

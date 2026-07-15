@@ -10,6 +10,18 @@ import {
 } from "./terminal.js";
 import {
 
+    startDialogue
+
+} from "./dialogueEngine.js";
+
+
+import {
+
+    rowanDialogue
+
+} from "./dialogues/rowan.js";
+import {
+
     gameState
 
 } from "./gameState.js";
@@ -79,10 +91,18 @@ async function loadScene(sceneID){
             button.onclick = ()=>{
 
 
-                loadScene(npc.scene);
+    if(npc.dialogue === "rowan"){
 
 
-            };
+        startDialogue(
+            rowanDialogue
+        );
+
+
+    }
+
+
+};
 
 
             choicesBox.appendChild(button);

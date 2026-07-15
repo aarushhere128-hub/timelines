@@ -454,7 +454,7 @@ speaker:"Rowan",
 
 text:
 
-"Because I think you were sent here to decide whether we deserve to remain."
+"Because I think you were sent here to decide whether we deserve to remain.",
 
 
 choices:[

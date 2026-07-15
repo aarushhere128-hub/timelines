@@ -43,6 +43,11 @@ async function showDialogueLine(index){
 
     const line =
     currentDialogue.lines[index];
+    const container =
+document.getElementById("timelineChoices");
+
+
+container.innerHTML = "";
 
 
     if(!line){

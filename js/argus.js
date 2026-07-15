@@ -340,7 +340,12 @@ async function startArgusHome(assetData){
     .getElementById("replayOrientation")
     .onclick = ()=>{
 
-        alert("Coming Soon");
+       clearTerminal();
+
+startArgusOrientation(
+    assetData,
+    true
+);
 
     };
 

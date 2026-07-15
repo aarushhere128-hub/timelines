@@ -8,7 +8,11 @@ import {
     clearTerminal
 
 } from "./terminal.js";
+import {
 
+    gameState
+
+} from "./gameState.js";
 let currentTimeline;
 
 
@@ -33,6 +37,7 @@ export function startSceneEngine(timeline){
 
 async function loadScene(sceneID){
 
+
     const scene =
     currentTimeline.scenes[sceneID];
 
@@ -41,7 +46,7 @@ async function loadScene(sceneID){
     document.getElementById("timelineChoices");
 
 
-    choicesBox.innerHTML = "";
+    choicesBox.innerHTML="";
 
 
     clearTerminal();
@@ -51,7 +56,61 @@ async function loadScene(sceneID){
 
 
 
+    // NPC buttons
+
+    if(scene.npcs){
+
+
+        scene.npcs.forEach(npc=>{
+
+
+            const button =
+            document.createElement("button");
+
+
+            button.className =
+            "timelineOption";
+
+
+            button.textContent =
+            "> Talk to " + npc.name;
+
+
+            button.onclick = ()=>{
+
+
+                loadScene(npc.scene);
+
+
+            };
+
+
+            choicesBox.appendChild(button);
+
+
+        });
+
+
+    }
+
+
+
+    // Normal choices
+
     scene.choices.forEach(choice=>{
+
+
+        if(choice.condition){
+
+
+            if(!gameState.flags[choice.condition]){
+
+                return;
+
+            }
+
+        }
+
 
 
         const button =
@@ -66,9 +125,19 @@ async function loadScene(sceneID){
         "> " + choice.text;
 
 
+
         button.onclick = ()=>{
 
+
+            if(choice.effect){
+
+                gameState.flags[choice.effect]=true;
+
+            }
+
+
             loadScene(choice.next);
+
 
         };
 
@@ -77,5 +146,6 @@ async function loadScene(sceneID){
 
 
     });
+
 
 }

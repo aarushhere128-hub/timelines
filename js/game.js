@@ -141,9 +141,19 @@ document
 
     if(!assetData.argusConfigured){
 
-        alert(
-            "Deployment denied.\n\nComplete mandatory ARGUS orientation first."
-        );
+        await openSystemMessage([
+
+            "> DEPLOYMENT DENIED.",
+
+            "",
+
+            "> Mandatory ARGUS orientation incomplete.",
+
+            "",
+
+            "> Complete orientation before timeline deployment."
+
+        ]);
 
         return;
 
@@ -153,9 +163,6 @@ document
 
 });
 
-// --------------------------------------
-// Asset Console
-// --------------------------------------
 
 // --------------------------------------
 // Asset Console
@@ -220,3 +227,41 @@ closeArgus.addEventListener("click", () => {
     consoleScreen.classList.remove("hidden");
 
 });
+async function openSystemMessage(lines){
+
+    const screen =
+    document.getElementById("systemMessage");
+
+    const terminal =
+    document.getElementById("systemMessageTerminal");
+
+    terminal.innerHTML = "";
+
+    screen.classList.remove("hidden");
+
+    for(const line of lines){
+
+        const p =
+        document.createElement("p");
+
+        p.textContent = line;
+
+        terminal.appendChild(p);
+
+    }
+
+    return new Promise(resolve=>{
+
+        document
+        .getElementById("closeSystemMessage")
+        .onclick = ()=>{
+
+            screen.classList.add("hidden");
+
+            resolve();
+
+        };
+
+    });
+
+}

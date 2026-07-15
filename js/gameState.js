@@ -3,23 +3,26 @@
 // gameState.js
 // ======================================
 
-
 export const gameState = {
 
 
-    flags:{
+flags:{
 
 
-        metRowan:false,
+metRowan:false,
 
-        metMira:false,
+metMira:false,
 
-        metVale:false,
-
-        learnedTruth:false
+metVale:false,
 
 
-    }
+learnedTruth:false
+
+
+},
+
+
+rowanTrust:0
 
 
 };

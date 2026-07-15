@@ -423,7 +423,7 @@ speaker:"Rowan",
 
 text:
 
-"A mistake. A miracle. Depending on who you ask."
+"A mistake. A miracle. Depending on who you ask.",
 
 
 choices:[

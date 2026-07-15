@@ -292,7 +292,7 @@ async function startArgusHome(assetData){
 
     await typeLine("");
 
-    await typeLine("> Standing by.");
+    await typeLine("> Awaiting instructions.");
 
     await typeLine("");
 

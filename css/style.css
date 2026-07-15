@@ -360,3 +360,58 @@ button:hover{
 .hidden{
     display:none !important;
 }
+#systemMessage{
+
+    position: fixed;
+
+    inset: 0;
+
+    background: black;
+
+    color: #00ff66;
+
+    z-index: 9999;
+
+    padding: 40px;
+
+    font-family: monospace;
+
+}
+
+#systemMessage.hidden{
+
+    display: none;
+
+}
+
+#systemMessageTerminal{
+
+    white-space: pre-wrap;
+
+    line-height: 1.8;
+
+    margin-bottom: 40px;
+
+}
+
+#closeSystemMessage{
+
+    background: none;
+
+    border: none;
+
+    color: #00ff66;
+
+    cursor: pointer;
+
+    font: inherit;
+
+}
+
+#closeSystemMessage:hover{
+
+    background: #00ff66;
+
+    color: black;
+
+}

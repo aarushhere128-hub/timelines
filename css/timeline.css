@@ -70,3 +70,77 @@ body{
     color:black;
 
 }
+#assetConsole{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    background:black;
+
+    border-top:1px solid #4db8ff;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    padding:15px;
+
+}
+
+
+
+#assetConsole button{
+
+    background:none;
+
+    border:1px solid #4db8ff;
+
+    color:#4db8ff;
+
+    font-family:monospace;
+
+    padding:10px;
+
+}
+
+
+
+#argusTimelineButton{
+
+    position:relative;
+
+}
+
+
+
+#argusNotification{
+
+    position:absolute;
+
+    top:-8px;
+
+    right:-8px;
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:red;
+
+}
+
+
+.hidden{
+
+    display:none;
+
+}

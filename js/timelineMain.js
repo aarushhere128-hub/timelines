@@ -3,7 +3,11 @@
 // timelineMain.js
 // ======================================
 
+import {
 
+    setTerminalScreen
+
+} from "./terminal.js";
 import {
 
     startSceneEngine
@@ -28,6 +32,11 @@ startTimeline();
 
 
 function startTimeline(){
+    const timelineScreen =
+document.getElementById("timelineText");
+
+
+setTerminalScreen(timelineScreen);
 
     startSceneEngine(A001);
 

@@ -196,26 +196,8 @@ checkSession(async(user)=>{
 
     }
 
-    await user.reload();
-
-    if(!user.emailVerified){
-
-        clearTerminal();
-
-        await typeLine("Archive Email not verified.");
-        await typeLine("");
-        await typeLine("Please verify your Archive Email.");
-        await typeLine("");
-        await typeLine("Refresh this page after verification.");
-
-        return;
-
-    }
 
     clearTerminal();
-
-    await typeLine("Archive Email Verified.");
-    await typeLine("");
     await typeLine("Welcome back.");
     await typeLine("");
     await typeLine("Connecting to The Archive...");

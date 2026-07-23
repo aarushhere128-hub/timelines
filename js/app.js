@@ -72,11 +72,9 @@ async function startRegistration(){
     await typeLine("I require several identifiers.");
     await typeLine("");
 
-    player.displayName = await ask("Display Name");
+   player.displayName = await ask("Display Name");
 
-    player.email = await ask("Archive Email");
-
-    player.password = await ask("Archive Access Key");
+player.password = await ask("Archive Access Key");
 
     const confirm = await ask("Confirm Archive Access Key");
 
@@ -98,19 +96,13 @@ await typeLine("");
 
 try {
 
-    await registerAsset(
-        player.displayName,
-        player.email,
-        player.password
-    );
-
+  await registerAsset(
+    player.displayName,
+    player.password
+);
     await typeLine("✓ Archive Record Created.");
-    await typeLine("");
-    await typeLine("Verification signal dispatched.");
-    await typeLine("");
-    await typeLine("Please verify your Archive Email.");
-    await typeLine("");
-    await typeLine("Once verified, restart the application to continue.");
+await typeLine("");
+await typeLine("Preparing Personnel Processing...");
 
 } catch(error){
 

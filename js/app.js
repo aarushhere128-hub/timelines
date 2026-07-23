@@ -3,6 +3,12 @@
 // app.js
 // ======================================
 import { checkSession } from "./session.js";
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+import { db } from "./firebase.js";
 import { registerAsset, loginAsset } from "./auth.js";
 import { typeLine, ask, clearTerminal } from "./terminal.js";
 const screen = document.querySelector(".screen");
@@ -195,17 +201,37 @@ checkSession(async(user)=>{
         return;
 
     }
+const assetRef = doc(db, "assets", user.uid);
+const assetSnap = await getDoc(assetRef);
 
+  if (!assetSnap.exists()) {
 
     clearTerminal();
-    await typeLine("Welcome back.");
+
+    await typeLine("Welcome to The Archive.");
     await typeLine("");
-    await typeLine("Connecting to The Archive...");
+    await typeLine("Proceeding to Personnel Processing...");
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
-        window.location.href="game.html";
+        window.location.href = "asset-create.html";
 
-    },1500);
+    }, 1500);
+
+    return;
+
+}
+
+clearTerminal();
+
+await typeLine("Welcome back.");
+await typeLine("");
+await typeLine("Connecting to The Archive...");
+
+setTimeout(() => {
+
+    window.location.href = "game.html";
+
+}, 1500);
 
 });

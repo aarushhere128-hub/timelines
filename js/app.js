@@ -106,9 +106,8 @@ try {
     player.displayName,
     player.password
 );
-    await typeLine("✓ Archive Record Created.");
-await typeLine("");
-await typeLine("Preparing Personnel Processing...");
+  window.location.href = "asset-create.html";
+return;
 
 } catch(error){
 

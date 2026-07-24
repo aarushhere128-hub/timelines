@@ -20,7 +20,64 @@ import {
 
 
 const screen = document.querySelector(".screen");
+async function startRegistration(displayName) {
 
+    clearTerminal();
+
+    await typeLine("> Connecting to The Archive...");
+    await typeLine("");
+    await typeLine("Connection Established.");
+    await typeLine("");
+    await typeLine("ARGUS ONLINE");
+    await typeLine("");
+    await typeLine("Greetings, candidate.");
+    await typeLine("");
+    await typeLine("No Archive Record was located.");
+    await typeLine("");
+    await typeLine("A new Archive Record will now be established.");
+    await typeLine("");
+
+    const password = await ask("Archive Access Key");
+
+    const confirm = await ask("Confirm Archive Access Key");
+
+    if (password !== confirm) {
+
+        await typeLine("");
+        await typeLine("Access Keys do not match.");
+        await typeLine("Restarting registration...");
+
+        setTimeout(() => startRegistration(displayName), 1000);
+
+        return;
+
+    }
+
+    try {
+
+        await registerAsset(displayName, password);
+
+        clearTerminal();
+
+        await typeLine("Archive Record Created.");
+        await typeLine("");
+        await typeLine("Proceeding to Personnel Processing...");
+
+        setTimeout(() => {
+
+            window.location.href = "asset-create.html";
+
+        }, 1500);
+
+    } catch (error) {
+
+        await typeLine("");
+        await typeLine("Registration failed.");
+        await typeLine(error.message);
+
+    }
+
+}
 
 // ======================================
 // NEW USER INTRO
@@ -47,7 +104,25 @@ await typeLine("");
 const assets = await findAssets(displayName);
 
 console.log("Found assets:", assets);
+if (assets.length === 0) {
 
+    await typeLine("No Archive Records located.");
+    await typeLine("");
+
+    const create = document.createElement("button");
+    create.textContent = "CREATE ARCHIVE RECORD";
+
+    screen.appendChild(create);
+
+    create.onclick = () => {
+
+        startRegistration(displayName);
+
+    };
+
+    return;
+
+}
 }
 
 

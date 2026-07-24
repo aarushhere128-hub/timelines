@@ -11,7 +11,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 import { db } from "./firebase.js";
-import { findAssets } from "./auth.js";
+import {
+    registerAsset,
+    loginAsset,
+    findAssets
+} from "./auth.js";
 import {
     typeLine,
     ask,

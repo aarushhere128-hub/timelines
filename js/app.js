@@ -14,6 +14,7 @@ import { db } from "./firebase.js";
 
 import {
     typeLine,
+    ask,
     clearTerminal
 } from "./terminal.js";
 
@@ -34,8 +35,12 @@ async function showIntro(){
 
     await typeLine("Authentication Service Online.");
     await typeLine("");
+await typeLine("Please identify yourself.");
+await typeLine("");
 
-    await typeLine("Please identify yourself.");
+const displayName = await ask("Display Name");
+
+console.log("Entered name:", displayName);
 
 }
 

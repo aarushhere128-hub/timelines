@@ -60,6 +60,8 @@ export async function loginAsset(email, password) {
 }
 export async function findAssets(displayName) {
 
+    console.log("Searching for:", displayName);
+
     const q = query(
         collection(db, "assets"),
         where("displayName", "==", displayName)
@@ -67,9 +69,13 @@ export async function findAssets(displayName) {
 
     const snapshot = await getDocs(q);
 
+    console.log("Documents found:", snapshot.size);
+
     const assets = [];
 
     snapshot.forEach(doc => {
+
+        console.log(doc.id, doc.data());
 
         assets.push(doc.data());
 

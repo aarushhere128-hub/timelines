@@ -113,63 +113,40 @@ async function startRegistration(){
     await typeLine("");
 
    player.displayName = await ask("Display Name");
-
-player.password = await ask("Archive Access Key");
-
-    const confirm = await ask("Confirm Archive Access Key");
-
-    if(confirm !== player.password){
-
-        await typeLine("");
-        await typeLine("Access Keys do not match.");
-        await typeLine("Restarting registration...");
-
-        setTimeout(startRegistration,1000);
-
-        return;
-
-    }
-
     await typeLine("");
-await typeLine("Creating Archive Record...");
+await typeLine("Searching Archive Records...");
 await typeLine("");
 
-try {
+const assets = await findAssets(displayName);
 
-  await registerAsset(
-    player.displayName,
-    player.password
-);
-  window.location.href = "asset-create.html";
-return;
+if (assets.length === 0) {
 
-} catch(error){
-
-    if(error.code === "auth/email-already-in-use"){
-
-        await typeLine("");
-        await typeLine("Searching Archive Records...");
-        await typeLine("");
-        await typeLine("Match found.");
-        await typeLine("");
-        await typeLine("It appears you are already connected with The Archive.");
-        await typeLine("");
-
-        setTimeout(() => {
-
-            startLogin(player.email);
-
-        }, 1500);
-
-        return;
-
-    }
-
+    await typeLine("No Archive Records located.");
     await typeLine("");
-    await typeLine("Registration failed.");
-    await typeLine(error.message);
 
-}
+    const create = document.createElement("button");
+    create.textContent = "CREATE ARCHIVE RECORD";
+
+    const cancel = document.createElement("button");
+    cancel.textContent = "CANCEL";
+
+    screen.appendChild(create);
+    screen.appendChild(cancel);
+
+    create.onclick = () => {
+
+        player.displayName = displayName;
+        startRegistration();
+
+    };
+
+    cancel.onclick = () => {
+
+        showIntro();
+
+    };
+
+    return;
 
 }
 

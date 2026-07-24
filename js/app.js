@@ -157,18 +157,8 @@ try {
         password
     );
 
-    clearTerminal();
-
-    await typeLine("Identity confirmed.");
-    await typeLine("");
-    await typeLine("Welcome back, Asset.");
-
-    setTimeout(() => {
-
-        window.location.href = "game.html";
-
-    }, 1000);
-
+ await typeLine("");
+await typeLine("Identity confirmed.");
 } catch {
 
     await typeLine("");

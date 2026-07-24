@@ -19,6 +19,7 @@ import {
 import {
     typeLine,
     ask,
+    choose,
     clearTerminal
 } from "./terminal.js";
 
@@ -125,6 +126,54 @@ if (assets.length === 0) {
     };
 
     return;
+
+}
+const options = assets.map(asset => asset.assetID);
+
+options.push("NONE OF THESE");
+
+const selectedAssetID = await choose(
+    "Select Archive Designation",
+    options
+);
+
+if (selectedAssetID === "NONE OF THESE") {
+
+    startRegistration(displayName);
+    return;
+
+}
+
+const selectedAsset =
+    assets.find(asset => asset.assetID === selectedAssetID);
+
+const password =
+    await ask("Archive Access Key");
+
+try {
+
+    await loginAsset(
+        selectedAsset.loginEmail,
+        password
+    );
+
+    clearTerminal();
+
+    await typeLine("Identity confirmed.");
+    await typeLine("");
+    await typeLine("Welcome back, Asset.");
+
+    setTimeout(() => {
+
+        window.location.href = "game.html";
+
+    }, 1000);
+
+} catch {
+
+    await typeLine("");
+    await typeLine("Authentication failed.");
+    await typeLine("Archive Access Key rejected.");
 
 }
 }

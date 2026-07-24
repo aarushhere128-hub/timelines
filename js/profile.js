@@ -34,7 +34,7 @@ export async function createAssetProfile(user, assetID) {
 
         displayName: user.displayName,
 
-        email: user.email,
+        loginEmail: user.email,
 
         assetID: assetID,
 

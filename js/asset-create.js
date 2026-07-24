@@ -153,12 +153,7 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
-    if (!user.emailVerified) {
-
-        window.location.href = "index.html";
-        return;
-
-    }
+   
     const assetRef = doc(db, "assets", user.uid);
 
 const assetSnap = await getDoc(assetRef);

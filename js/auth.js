@@ -4,7 +4,14 @@
 // ======================================
 
 import { auth } from "./firebase.js";
+import { db } from "./firebase.js";
 
+import {
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -49,5 +56,25 @@ export async function loginAsset(email, password) {
     );
 
     return userCredential.user;
+
+}
+export async function findAssets(displayName) {
+
+    const q = query(
+        collection(db, "assets"),
+        where("displayName", "==", displayName)
+    );
+
+    const snapshot = await getDocs(q);
+
+    const assets = [];
+
+    snapshot.forEach(doc => {
+
+        assets.push(doc.data());
+
+    });
+
+    return assets;
 
 }

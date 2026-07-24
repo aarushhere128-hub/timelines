@@ -25,6 +25,7 @@ import {
 
 
 const screen = document.querySelector(".screen");
+let skipIntro = false;
 async function startRegistration(displayName) {
 
     clearTerminal();
@@ -99,15 +100,32 @@ skip.style.right = "15px";
 
 document.body.appendChild(skip);
 
+skip.onclick = () => {
+
+    skipIntro = true;
+
+};
     clearTerminal();
 
     await typeLine("Booting Archive Terminal...");
+    if (skipIntro) return finishIntro();
+
     await typeLine("");
+    if (skipIntro) return finishIntro();
+
 
     await typeLine("Authentication Service Online.");
+    if (skipIntro) return finishIntro();
+
     await typeLine("");
+    if (skipIntro) return finishIntro();
+
 await typeLine("Please identify yourself.");
+    if (skipIntro) return finishIntro();
+
 await typeLine("");
+    if (skipIntro) return finishIntro();
+
 
 const displayName = await ask("Display Name");
 

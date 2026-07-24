@@ -76,13 +76,7 @@ onAuthStateChanged(auth, async (user) => {
 
     // Email not verified
 
-    if (!user.emailVerified) {
-
-        window.location.href = "index.html";
-
-        return;
-
-    }
+   
 
     // Asset profile exists?
 

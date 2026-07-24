@@ -63,7 +63,7 @@ export async function findAssets(displayName) {
     console.log("Searching for:", displayName);
 
     const q = query(
-        collection(db, "assets"),
+        collection(db,"loginIndex")
         where("displayName", "==", displayName)
     );
 

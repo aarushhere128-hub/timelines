@@ -179,9 +179,7 @@ if (assetSnap.exists()) {
     await typeLine("Beginning Asset Initialization...");
     await typeLine("");
 
-    await typeLine("Assigning Rank...");
-    await typeLine("Candidate");
-    await typeLine("");
+   
 
     await typeLine("Generating Archive Designation...");
     await typeLine("");

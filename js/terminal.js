@@ -165,7 +165,44 @@ export function ask(question){
 
 
 }
+export function choose(question, options){
 
+    return new Promise(resolve=>{
+
+        const line = document.createElement("p");
+        line.textContent = question;
+        screen.appendChild(line);
+
+        const select = document.createElement("select");
+
+        options.forEach(option=>{
+
+            const opt = document.createElement("option");
+
+            opt.value = option;
+
+            opt.textContent = option;
+
+            select.appendChild(opt);
+
+        });
+
+        screen.appendChild(select);
+
+        const button = document.createElement("button");
+        button.textContent = "CONFIRM";
+
+        screen.appendChild(button);
+
+        button.onclick = ()=>{
+
+            resolve(select.value);
+
+        };
+
+    });
+
+}
 
 
 // --------------------------------------

@@ -212,6 +212,7 @@ checkSession(async(user)=>{
     // Account exists but no Asset profile
 
     if(!assetSnap.exists()){
+        clearTerminal();
 
 
         await typeLine("");

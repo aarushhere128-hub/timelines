@@ -190,15 +190,10 @@ async function showIntro() {
     await typeLine("ARGUS unavailable.");
     await typeLine("Manual recruitment mode enabled.");
     await typeLine("");
-    await typeLine("Would you like to join The Archive?");
-    await typeLine("");
+   await typeLine("Please identify yourself.");
+await typeLine("");
 
-    const accept = document.createElement("button");
-    accept.textContent = "ACCEPT";
-
-    const decline = document.createElement("button");
-    decline.textContent = "DECLINE";
-
+const displayName = await ask("Display Name");
     screen.appendChild(accept);
     screen.appendChild(decline);
 

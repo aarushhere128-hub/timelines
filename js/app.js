@@ -9,8 +9,18 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 import { db } from "./firebase.js";
-import { registerAsset, loginAsset } from "./auth.js";
-import { typeLine, ask, clearTerminal } from "./terminal.js";
+import {
+    registerAsset,
+    loginAsset,
+    findAssets
+} from "./auth.js";
+
+import {
+    typeLine,
+    ask,
+    choose,
+    clearTerminal
+} from "./terminal.js";
 const screen = document.querySelector(".screen");
 
 let player = {};
@@ -28,15 +38,39 @@ async function startLogin(email = "") {
     await typeLine("Authentication required.");
     await typeLine("");
 
-    const loginEmail =
-        email || await ask("Archive Email");
+   const displayName =
+    await ask("Display Name");
 
-    const password =
-        await ask("Archive Access Key");
+await typeLine("");
+await typeLine("Searching Archive Records...");
+
+const assets =
+    await findAssets(displayName);
+
+if (assets.length === 0) {
+
+    await typeLine("");
+    await typeLine("No Archive Records located.");
+
+    return;
+
+}
+
+const selectedAssetID =
+    await choose(
+        "Select Asset Designation",
+        assets.map(asset => asset.assetID)
+    );
+
+const selectedAsset =
+    assets.find(asset => asset.assetID === selectedAssetID);
+
+const password =
+    await ask("Archive Access Key");
 
     try {
 
-        await loginAsset(loginEmail, password);
+       await loginAsset(selectedAsset.loginEmail, password);
 
         await typeLine("");
         await typeLine("Identity confirmed.");

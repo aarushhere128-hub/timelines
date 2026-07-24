@@ -173,32 +173,21 @@ export function choose(question, options){
         line.textContent = question;
         screen.appendChild(line);
 
-        const select = document.createElement("select");
-
         options.forEach(option=>{
 
-            const opt = document.createElement("option");
+            const button = document.createElement("button");
 
-            opt.value = option;
+            button.textContent = option;
 
-            opt.textContent = option;
+            button.onclick = ()=>{
 
-            select.appendChild(opt);
+                resolve(option);
+
+            };
+
+            screen.appendChild(button);
 
         });
-
-        screen.appendChild(select);
-
-        const button = document.createElement("button");
-        button.textContent = "CONFIRM";
-
-        screen.appendChild(button);
-
-        button.onclick = ()=>{
-
-            resolve(select.value);
-
-        };
 
     });
 

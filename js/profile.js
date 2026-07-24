@@ -56,5 +56,14 @@ argusCompleted: false,
         createdAt: serverTimestamp()
 
     });
+    await setDoc(doc(db,"loginIndex",user.uid),{
+
+    displayName: user.displayName,
+
+    assetID: assetID,
+
+    loginEmail: user.email
+
+});
 
 }

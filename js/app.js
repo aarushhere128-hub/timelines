@@ -11,7 +11,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 import { db } from "./firebase.js";
-
+import { findAssets } from "./auth.js";
 import {
     typeLine,
     ask,
@@ -40,7 +40,13 @@ await typeLine("");
 
 const displayName = await ask("Display Name");
 
-console.log("Entered name:", displayName);
+await typeLine("");
+await typeLine("Searching Archive Records...");
+await typeLine("");
+
+const assets = await findAssets(displayName);
+
+console.log("Found assets:", assets);
 
 }
 

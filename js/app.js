@@ -89,6 +89,15 @@ async function startRegistration(displayName) {
 // ======================================
 
 async function showIntro(){
+    const skip = document.createElement("button");
+
+skip.textContent = "SKIP";
+
+skip.style.position = "absolute";
+skip.style.top = "15px";
+skip.style.right = "15px";
+
+document.body.appendChild(skip);
 
     clearTerminal();
 

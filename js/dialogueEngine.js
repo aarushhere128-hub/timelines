@@ -17,22 +17,33 @@ import {
 } from "./gameState.js";
 
 let currentDialogue;
+let actionHandler = null;
 
+
+export function setDialogueActions(actions){
+
+    actionHandler = actions;
+
+}
 
 
 // --------------------------------------
 // Start Dialogue
 // --------------------------------------
 
-export async function startDialogue(dialogue){
+let currentAsset;
 
+
+export async function startDialogue(dialogue, assetData){
 
     currentDialogue = dialogue;
 
+    currentAsset = assetData;
 
     await showDialogueLine(
         dialogue.start
     );
+
 
 
 }
@@ -127,12 +138,19 @@ function showChoices(choices){
 
 
 
-        button.onclick = ()=>{
+     button.onclick = ()=>{
 
+if(choice.action){
 
-    applyEffect(
-        choice.effect
-    );
+    if(actionHandler){
+
+        actionHandler(choice.action);
+
+    }
+
+    return;
+
+}
 
 
     showDialogueLine(

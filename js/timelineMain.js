@@ -3,11 +3,15 @@
 // timelineMain.js
 // ======================================
 
+
 import {
 
-    setTerminalScreen
+    setTerminalScreen,
+    typeLine
 
 } from "./terminal.js";
+
+
 import {
 
     startSceneEngine
@@ -23,6 +27,7 @@ import {
 
 
 
+
 // --------------------------------------
 // Start Timeline
 // --------------------------------------
@@ -31,13 +36,74 @@ startTimeline();
 
 
 
-function startTimeline(){
+async function startTimeline(){
+
+
     const timelineScreen =
-document.getElementById("timelineText");
+    document.getElementById("timelineText");
 
 
-setTerminalScreen(timelineScreen);
+    setTerminalScreen(
+        timelineScreen
+    );
 
-    startSceneEngine(A001);
+
+
+    await showContext();
+
+
+
+    startSceneEngine(
+        A001
+    );
+
+
+}
+
+
+
+
+async function showContext(){
+
+
+    await typeLine(
+        "TIMELINE A-001"
+    );
+
+
+    await typeLine(
+        "DESIGNATION: The Vanishing Village"
+    );
+
+
+    await typeLine(
+        ""
+    );
+
+
+    await typeLine(
+        "PHYSICAL CONDITIONS:"
+    );
+
+
+    await typeLine(
+        "- Temperate"
+    );
+
+
+    await typeLine(
+        "- Rural Settlement"
+    );
+
+
+    await typeLine(
+        "- Reality Instability Detected"
+    );
+
+
+    await typeLine(
+        ""
+    );
+
 
 }

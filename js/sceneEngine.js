@@ -2,12 +2,16 @@
 // TIMELINES: THE ARCHIVE
 // sceneEngine.js
 // ======================================
+
+
 import {
 
     typeLine,
     clearTerminal
 
 } from "./terminal.js";
+
+
 import {
 
     startDialogue
@@ -17,15 +21,14 @@ import {
 
 import {
 
-    rowanDialogue
-
-} from "./dialogues/rowan.js";
-import {
-
     gameState
 
 } from "./gameState.js";
+
+
+
 let currentTimeline;
+
 
 
 // --------------------------------------
@@ -43,6 +46,8 @@ export function startSceneEngine(timeline){
 }
 
 
+
+
 // --------------------------------------
 // Load Scene
 // --------------------------------------
@@ -54,21 +59,44 @@ async function loadScene(sceneID){
     currentTimeline.scenes[sceneID];
 
 
+
+    if(!scene){
+
+        console.error(
+            "Missing scene:",
+            sceneID
+        );
+
+        return;
+
+    }
+
+
+
     const choicesBox =
-    document.getElementById("timelineChoices");
+    document.getElementById(
+        "timelineChoices"
+    );
+
 
 
     choicesBox.innerHTML="";
 
 
+
     clearTerminal();
 
 
-    await typeLine(scene.text);
+
+    await typeLine(
+        scene.text
+    );
 
 
 
-    // NPC buttons
+    // -------------------------------
+    // NPCs
+    // -------------------------------
 
     if(scene.npcs){
 
@@ -77,7 +105,9 @@ async function loadScene(sceneID){
 
 
             const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
 
             button.className =
@@ -88,24 +118,21 @@ async function loadScene(sceneID){
             "> Talk to " + npc.name;
 
 
+
             button.onclick = ()=>{
 
 
-    if(npc.dialogue === "rowan"){
+                openNPC(
+                    npc
+                );
 
 
-        startDialogue(
-            rowanDialogue
-        );
+            };
 
 
-    }
-
-
-};
-
-
-            choicesBox.appendChild(button);
+            choicesBox.appendChild(
+                button
+            );
 
 
         });
@@ -115,57 +142,141 @@ async function loadScene(sceneID){
 
 
 
-    // Normal choices
 
-    scene.choices.forEach(choice=>{
-
-
-        if(choice.condition){
+    // -------------------------------
+    // Choices
+    // -------------------------------
 
 
-            if(!gameState.flags[choice.condition]){
-
-                return;
-
-            }
-
-        }
+    if(scene.choices){
 
 
-
-        const button =
-        document.createElement("button");
+        scene.choices.forEach(choice=>{
 
 
-        button.className =
-        "timelineOption";
+            if(choice.condition){
 
 
-        button.textContent =
-        "> " + choice.text;
+                if(
+                    !gameState.flags[
+                        choice.condition
+                    ]
+                ){
 
+                    return;
 
+                }
 
-        button.onclick = ()=>{
-
-
-            if(choice.effect){
-
-                gameState.flags[choice.effect]=true;
 
             }
 
 
-            loadScene(choice.next);
 
 
-        };
+            const button =
+            document.createElement(
+                "button"
+            );
 
 
-        choicesBox.appendChild(button);
+
+            button.className =
+            "timelineOption";
 
 
-    });
+
+            button.textContent =
+            "> " + choice.text;
+
+
+
+            button.onclick = ()=>{
+
+
+                if(choice.effect){
+
+                    gameState.flags[
+                        choice.effect
+                    ] = true;
+
+
+                }
+
+
+
+                loadScene(
+                    choice.next
+                );
+
+
+            };
+
+
+
+            choicesBox.appendChild(
+                button
+            );
+
+
+        });
+
+
+    }
+
+
+
+
+    // -------------------------------
+    // Outcome
+    // -------------------------------
+
+    if(scene.outcome){
+
+        completeTimeline(
+            scene.outcome
+        );
+
+    }
+
+
+
+}
+
+
+
+// --------------------------------------
+// NPC Interaction
+// --------------------------------------
+
+function openNPC(npc){
+
+
+    if(npc.dialogue){
+
+
+        startDialogue(
+            npc.dialogue
+        );
+
+
+    }
+
+
+}
+
+
+
+// --------------------------------------
+// Timeline Completion
+// --------------------------------------
+
+function completeTimeline(outcome){
+
+
+    console.log(
+        "Timeline outcome:",
+        outcome
+    );
 
 
 }

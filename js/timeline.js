@@ -5,7 +5,7 @@
 
 import {
     A001
-} from "./A001.js";
+} from "./timeline/a001.js";
 
 
 const timelines = {

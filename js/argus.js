@@ -98,13 +98,15 @@ await new Promise(resolve=>{
 
     window.dialogueComplete = resolve;
 
-   setDialogueActions((action)=>{
+  setDialogueActions(async(action)=>{
 
-    if(action === "renameArgus"){
+if(action === "renameArgus"){
 
-        renameArgus(assetData);
+    await renameArgus(assetData);
 
-    }
+    window.dialogueComplete();
+
+}
 
 });
 
@@ -131,7 +133,67 @@ if(replay){
   
 }
 
+async function renameArgus(assetData){
 
+
+    await typeLine("");
+
+    await typeLine("> Enter new designation.");
+
+    let newName;
+
+
+    while(true){
+
+        newName = (await ask(">")).trim();
+
+
+        if(newName.length < 2){
+
+            await typeLine("> Designation must contain at least 2 characters.");
+
+            continue;
+
+        }
+
+
+        if(newName.length > 20){
+
+            await typeLine("> Designation cannot exceed 20 characters.");
+
+            continue;
+
+        }
+
+
+        break;
+
+    }
+
+
+    await saveArgusName(
+        assetData.uid,
+        newName
+    );
+
+
+    assetData.argusConfigured = true;
+    assetData.argusName = newName;
+
+
+    await typeLine("");
+
+    await typeLine("> Designation updated.");
+
+    await typeLine(
+        `> I will now respond as ${newName}.`
+    );
+
+    await typeLine("");
+
+    await typeLine("> Orientation complete.");
+
+}
 // --------------------------------------
 // ARGUS HOME
 // --------------------------------------

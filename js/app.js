@@ -160,7 +160,7 @@ const options = assets.map(asset => asset.assetID);
 options.push("NONE OF THESE");
 
 const selectedAssetID = await choose(
-    "Select Archive Designation",
+    "Existing Asset records detected. Is one of these yours?",
     options
 );
 

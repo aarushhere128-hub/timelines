@@ -52,6 +52,7 @@ async function showDialogueLine(id){
 
     const container =
     document.getElementById("timelineChoices");
+    console.log("Choice container:", container);
 
 
     container.innerHTML = "";

@@ -2,7 +2,9 @@
 // TIMELINES: THE ARCHIVE
 // argus.js
 // ======================================
-
+import {
+    startDialogue
+} from "./dialogueEngine.js";
 import {
 
     typeLine,
@@ -15,8 +17,6 @@ import {
 
 import {
 
-    loadArgusStage,
-    saveArgusStage,
     saveArgusName
 
 } from "./argusDatabase.js";
@@ -92,56 +92,13 @@ export async function startArgusOrientation(
     //------------------------------------
     // Progress
     //------------------------------------
+await new Promise(resolve=>{
 
-    const stage =
+    window.dialogueComplete = resolve;
 
-        await loadArgusStage(assetData.uid);
-  
+    startDialogue(conversation);
 
-
-    //------------------------------------
-    // Instantly print previous lines
-    //------------------------------------
-
-    if(!replay){
-
-    for(let i = 0; i < stage; i++){
-
-        printLine(conversation[i]);
-
-    }
-
-}
-
-    //------------------------------------
-    // Continue typing
-    //------------------------------------
-
-    const startLine =
-replay ? 0 : stage;
-
-for(let i = startLine; i < conversation.length; i++){
-
-        if(!argusRunning){
-
-            return;
-
-        }
-
-        await typeLine(conversation[i]);
-
-        if(!replay){
-
-    await saveArgusStage(
-        assetData.uid,
-        i + 1
-    );
-
-}
-
-    }
-
-
+});
     //------------------------------------
     // End of Part 1
     //------------------------------------

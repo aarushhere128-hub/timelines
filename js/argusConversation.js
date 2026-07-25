@@ -241,17 +241,21 @@ assessment:{
 speaker:"ARGUS",
 
 text:
-`Beginning cognitive assessment.`,
+`Beginning cognitive assessment.
+
+There are no correct answers.
+
+Your responses will help determine how I provide assistance.`,
 
 choices:[
 
 {
-text:"Ready.",
-next:"complete"
+text:"Begin.",
+next:"cognitiveAssessment1"
 },
 
 {
-text:"Explain.",
+text:"Explain further.",
 next:"assessmentExplain"
 }
 
@@ -283,6 +287,123 @@ next:"complete"
 
 },
 
+cognitiveAssessment1:{
+
+speaker:"ARGUS",
+
+text:
+`Scenario:
+
+A timeline is unstable.
+
+Restoring stability will save millions of lives.
+
+However, the process may erase a civilization's history.
+
+Your recommended action?`,
+
+choices:[
+
+{
+text:"Restore stability immediately.",
+next:"cognitiveAssessment2"
+},
+
+{
+text:"Investigate before acting.",
+next:"cognitiveAssessment2"
+},
+
+{
+text:"Preserve the civilization.",
+next:"cognitiveAssessment2"
+}
+
+]
+
+},
+
+
+cognitiveAssessment2:{
+
+speaker:"ARGUS",
+
+text:
+`Scenario:
+
+An individual inside a timeline possesses information required for stabilization.
+
+Obtaining the information may place them at risk.
+
+Proceed?`,
+
+choices:[
+
+{
+text:"Complete the mission.",
+next:"assessmentComplete"
+},
+
+{
+text:"Find another solution.",
+next:"assessmentComplete"
+}
+
+]
+
+},
+
+assessmentComplete:{
+
+speaker:"ARGUS",
+
+text:
+`Cognitive assessment complete.
+
+Decision patterns recorded.
+
+Assistance parameters updated.`,
+
+choices:[
+
+{
+text:"Continue.",
+next:"designation"
+}
+
+]
+
+},
+
+
+designation:{
+
+speaker:"ARGUS",
+
+text:
+`One final configuration remains.
+
+My default designation is ARGUS.
+
+Adaptive Reality Guidance and Utility System.
+
+You may assign a personal designation if preferred.`,
+
+choices:[
+
+{
+text:"Keep ARGUS.",
+next:"complete"
+},
+
+{
+text:"Assign a new designation.",
+next:"rename"
+}
+
+]
+
+},
 
 
 complete:{
@@ -290,14 +411,15 @@ complete:{
 speaker:"ARGUS",
 
 text:
-`Orientation complete.
+`Designation confirmed.
+
+Orientation complete.
 
 Preparing first deployment.`,
 
 choices:[]
 
 }
-
 
 }
 

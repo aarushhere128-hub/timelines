@@ -62,9 +62,8 @@ export async function startArgusOrientation(
     argusRunning = true;
 
 
-    const dialogue =
-
-        document.getElementById("argusDialogue");
+  const dialogue =
+document.getElementById("argusText");
 
 
     setTerminalScreen(dialogue);

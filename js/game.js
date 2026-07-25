@@ -145,7 +145,7 @@ document
 
             "",
 
-            "> Complete orientation before timeline deployment."
+            "> Complete orientation in Asset Console before timeline deployment."
 
         ]);
 

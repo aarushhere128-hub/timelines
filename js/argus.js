@@ -101,8 +101,7 @@ await new Promise(resolve=>{
     //------------------------------------
     // End of Part 1
     //------------------------------------
-
-   if(replay){
+if(replay){
 
     await typeLine("");
 
@@ -113,146 +112,10 @@ await new Promise(resolve=>{
     showReturnHome(assetData);
 
 }
-else if(!assetData.argusConfigured){
-
-    showRenameChoices(assetData);
-
-}
   
 }
-  function showRenameChoices(assetData){
-
-    const dialogue =
-    document.getElementById("argusDialogue");
-
-    dialogue.insertAdjacentHTML(
-
-        "beforeend",
-
-        `
-
-        <button class="argusOption" id="keepArgus">
-
-            > KEEP ARGUS
-
-        </button>
-
-        <button class="argusOption" id="renameArgus">
-
-            > RENAME
-
-        </button>
-
-        `
-
-    );
-
-    document
-    .getElementById("keepArgus")
-    .onclick = ()=>keepArgus(assetData);
-
-    document
-    .getElementById("renameArgus")
-    .onclick = ()=>renameArgus(assetData);
-
-}
-// --------------------------------------
-// KEEP ARGUS
-// --------------------------------------
-
-async function keepArgus(assetData){
 
 
-    document
-    .querySelectorAll(".argusOption")
-    .forEach(button => button.remove());
-
-
-    await saveArgusName(
-        assetData.uid,
-        "ARGUS"
-    );
-    assetData.argusConfigured = true;
-assetData.argusName = "ARGUS";
-
-
-    await typeLine("");
-
-    await typeLine("> Designation accepted.");
-
-    await typeLine("> ARGUS will remain my designation.");
-
-    await typeLine("");
-
-    await typeLine("> Orientation complete.");
-
-}
-
-
-// --------------------------------------
-// RENAME ARGUS
-// --------------------------------------
-
-async function renameArgus(assetData){
-
-
-    document
-    .querySelectorAll(".argusOption")
-    .forEach(button => button.remove());
-
-
-    await typeLine("");
-
-await typeLine("> Enter new designation.");
-
-let newName;
-
-while(true){
-
-    newName = (await ask("")).trim();
-
-    if(newName.length < 2){
-
-        await typeLine("> Designation must contain at least 2 characters.");
-        await typeLine("> Enter new designation.");
-        continue;
-
-    }
-
-    if(newName.length > 20){
-
-        await typeLine("> Designation cannot exceed 20 characters.");
-        await typeLine("> Enter new designation.");
-        continue;
-
-    }
-
-    break;
-
-}
-
-await saveArgusName(
-    assetData.uid,
-    newName
-);
-    assetData.argusConfigured = true;
-assetData.argusName = newName;
-
-
-    await typeLine("");
-
-    await typeLine("> Designation updated.");
-
-    await typeLine(
-        `> I will now respond as ${newName}.`
-    );
-
-
-    await typeLine("");
-
-    await typeLine("> Orientation complete.");
-
-}
 // --------------------------------------
 // ARGUS HOME
 // --------------------------------------

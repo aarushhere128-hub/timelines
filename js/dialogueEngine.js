@@ -80,10 +80,20 @@ async function showDialogueLine(id){
 
 
 
-    showChoices(
-        line.choices
-    );
+if(line.choices && line.choices.length > 0){
 
+    showChoices(line.choices);
+
+}
+else{
+
+    if(window.dialogueComplete){
+
+        window.dialogueComplete();
+
+    }
+
+}
 
 }
 

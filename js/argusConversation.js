@@ -4,124 +4,164 @@
 
 export function getOrientation(asset){
 
-    return [
+return {
 
-        `> ARGUS ONLINE.`,
+start:"activation",
 
-        ``,
+lines:{
 
-        `> Good morning, ${asset.displayName}.`,
 
-        ``,
+activation:{
 
-        `> Welcome to The Archive.`,
+speaker:"ARGUS",
 
-        ``,
+text:
+`Connection established.
 
-        `> Asset designation: ${asset.assetID}`,
+Adaptive Reality Guidance and Utility System online.
 
-        `> Rank: Candidate`,
+Identity recognized.
 
-        ``,
+Asset designation: ${asset.assetID}`,
 
-        `> I am ARGUS.`,
+choices:[
 
-        `> Adaptive Reality Guidance and Utility System.`,
+{
+text:"Continue.",
+next:"purpose"
+}
 
-        ``,
+]
 
-        `> I will provide assistance during Archive operations.`,
+},
 
-        ``,
 
-        `> New Asset detected.`,
 
-        `> Knowledge database: insufficient.`,
+purpose:{
 
-        ``,
+speaker:"ARGUS",
 
-        `> Beginning mandatory orientation.`,
+text:
+`I am ARGUS.
 
-        ``,
+I provide assistance during Archive operations.
 
-        `> The Archive is an organization dedicated to preserving reality.`,
+Your assignment:
 
-        ``,
+Observe.
+Analyze.
+Stabilize.`,
 
-        `> Countless timelines exist throughout history.`,
+choices:[
 
-        ``,
+{
+text:"What is a timeline?",
+next:"timeline"
+},
 
-        `> Some develop naturally.`,
+{
+text:"Understood.",
+next:"timeline"
+}
 
-        `> Others become unstable.`,
+]
 
-        ``,
+},
 
-        `> When a timeline becomes damaged...`,
 
-        `> Reality begins rejecting itself.`,
 
-        ``,
+timeline:{
 
-        `> Events occur that should not exist.`,
+speaker:"ARGUS",
 
-        `> Memories contradict each other.`,
+text:
+`A timeline is an independent reality.
 
-        `> History changes.`,
+Not a simulation.
+Not a recording.
 
-        ``,
+A living sequence of events.`,
 
-        `> These incidents are classified as Timeline Instability.`,
+choices:[
 
-        ``,
+{
+text:"Continue.",
+next:"protocol"
+}
 
-        `> A timeline is not a simulation.`,
+]
 
-        `> It is not a recording.`,
+},
 
-        ``,
 
-        `> It is a living reality.`,
 
-        ``,
+protocol:{
 
-        `> You are an Asset of The Archive.`,
+speaker:"ARGUS",
 
-        ``,
+text:
+`Archive Protocol One:
 
-        `> Your responsibility is investigation.`,
+Observe before interfering.
 
-        `> Your responsibility is recovery.`,
+The individuals within a timeline are not obstacles.
 
-        `> Your responsibility is stabilization.`,
+They are lives.`,
 
-        ``,
+choices:[
 
-        `> Archive Protocol One:`,
+{
+text:"Continue.",
+next:"assessment"
+}
 
-        ``,
+]
 
-        `> Observe before interfering.`,
+},
 
-        ``,
 
-        `> The people inside a timeline are not obstacles.`,
 
-        `> They are lives.`,
+assessment:{
 
-        ``,
+speaker:"ARGUS",
 
-        `> One configuration remains.`,
+text:
+`Beginning cognitive assessment.`,
 
-        ``,
+choices:[
 
-        `> My default designation is ARGUS.`,
+{
+text:"Ready.",
+next:"complete"
+},
 
-        ``,
+{
+text:"Explain.",
+next:"complete"
+}
 
-        `> Would you like to assign a personal designation?`
+]
 
-    ];
+},
+
+
+
+complete:{
+
+speaker:"ARGUS",
+
+text:
+`Orientation complete.
+
+Preparing first deployment.`,
+
+choices:[]
+
+}
+
+
+}
+
+};
 
 }

@@ -77,6 +77,10 @@ export async function completeOrientation(uid){
 // Save ARGUS Name
 // --------------------------------------
 
+// --------------------------------------
+// Save ARGUS Name
+// --------------------------------------
+
 export async function saveArgusName(uid, name){
 
     const assetRef =
@@ -85,8 +89,10 @@ export async function saveArgusName(uid, name){
     await updateDoc(assetRef, {
 
         argusName: name,
-        argusConfigured: true
+        argusConfigured: true,
+        argusCompleted: true
 
     });
 
+}
 }

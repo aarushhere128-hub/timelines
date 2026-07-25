@@ -23,7 +23,7 @@ import {
 
     A001
 
-} from "./trainingTimelines/A001.js";
+} from "./timelines/A001.js";
 
 
 

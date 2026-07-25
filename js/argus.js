@@ -6,6 +6,9 @@ import {
     startDialogue
 } from "./dialogueEngine.js";
 import {
+    setDialogueActions
+} from "./dialogueEngine.js";
+import {
 
     typeLine,
     printLine,
@@ -95,8 +98,21 @@ await new Promise(resolve=>{
 
     window.dialogueComplete = resolve;
 
-    startDialogue(conversation);
+   setDialogueActions((action)=>{
 
+    if(action === "renameArgus"){
+
+        renameArgus(assetData);
+
+    }
+
+});
+
+
+startDialogue(
+    conversation,
+    assetData
+);
 });
     //------------------------------------
     // End of Part 1

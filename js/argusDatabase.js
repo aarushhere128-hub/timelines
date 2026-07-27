@@ -95,4 +95,4 @@ export async function saveArgusName(uid, name){
     });
 
 }
-}
+
